@@ -25,6 +25,20 @@
     logoTrack.innerHTML += logoTrack.innerHTML;
   }
 
+  /* ---------- Load image assets stored as small base64 text files ----------
+     Images are kept as separate small text files under assets/img/ (instead
+     of being embedded inline) so they stay reliable to store/update. This
+     fetches each one and injects it as a data: URI once loaded. ---------- */
+  $$("[data-img-src]").forEach((img) => {
+    const path = img.getAttribute("data-img-src");
+    fetch(path)
+      .then((r) => r.text())
+      .then((text) => {
+        img.src = "data:image/png;base64," + text.replace(/\s+/g, "");
+      })
+      .catch(() => {});
+  });
+
   /* ---------- Mobile nav ---------- */
   const navToggle = $("#navToggle");
   const mainNav = $("#mainNav");
