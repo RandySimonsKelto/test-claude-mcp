@@ -6,17 +6,21 @@
 :root {
   color-scheme: light;
 
-  /* Brand */
-  --navy-900: #0a1728;
-  --navy-800: #0f2138;
-  --navy-700: #16304f;
-  --navy-600: #1e3f66;
+  /* Brand — sampled directly from the Kelto logo */
+  --navy-900: #0a1728;       /* deepest anchor (unchanged) — hero/footer/CTA background */
+  --logo-navy: #134e86;      /* KELTO wordmark navy — primary brand color for text/icons on light bg */
+  --navy-800: var(--logo-navy);
+  --navy-700: #1a5c9c;       /* lighter step, derived — gradients, hover states on dark buttons */
+  --logo-cyan: #1eacda;      /* logo icon's light triangle — accent for dark backgrounds only */
+  --chart-blue: #1b76ab;     /* chart-safe step of the brand blue (validated vs orange, see below) */
 
-  /* Categorical (validated pair — dataviz palette) */
-  --blue-500: #2a78d6;
+  /* Categorical (validated pair — dataviz palette, re-run against logo colors) */
   --blue-100: #e9f1fd;
-  --orange-500: #eb6834;
-  --orange-100: #fdeee7;
+  --orange-500: #eb6834;     /* vivid — decorative fills only (icons, chart slice, dots) */
+  --orange-100: #fbe0d2;
+  --orange-700: #a83f16;     /* text-safe darkest orange — badges, links, hover states */
+  --orange-btn: #c04d1e;     /* button fill — AA-safe with white text (4.9:1) */
+  --orange-btn-hover: #a83f16;
 
   /* Chrome & ink (light) */
   --surface-1: #ffffff;
@@ -31,9 +35,9 @@
   --good: #0ca30c;
 
   /* Semantics */
-  --accent: var(--orange-500);
+  --accent: var(--orange-btn);
   --accent-ink: #ffffff;
-  --brand: var(--blue-500);
+  --brand: var(--logo-navy);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
@@ -99,13 +103,21 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: var(--shadow-sm); }
-.btn-primary:hover { background: #d95926; box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--orange-btn-hover); box-shadow: var(--shadow-md); }
 .btn-secondary { background: var(--navy-800); color: #fff; }
 .btn-secondary:hover { background: var(--navy-700); }
 .btn-outline-light { border-color: rgba(255,255,255,.5); color: #fff; }
 .btn-outline-light:hover { background: rgba(255,255,255,.12); }
 .btn-lg { padding: 1.05rem 2rem; font-size: 1.05rem; }
 .btn-header { display: none; }
+
+/* ============ Barre Québec ============ */
+.qc-bar { background: var(--navy-900); color: rgba(255,255,255,.85); }
+.qc-bar-inner {
+  display: flex; align-items: center; justify-content: center; gap: .55rem;
+  padding: .45rem 24px; font-size: .8rem; font-weight: 700; letter-spacing: .02em;
+}
+.qc-flag { border-radius: 2px; flex-shrink: 0; }
 
 /* ============ Header ============ */
 .site-header {
@@ -120,14 +132,14 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 24px;
 }
-.logo { font-size: 1.5rem; font-weight: 800; color: var(--navy-900); letter-spacing: -.02em; }
-.logo-dot { color: var(--accent); }
+.logo { display: inline-flex; align-items: center; }
+.logo img { height: 34px; width: auto; display: block; }
 .main-nav ul { display: flex; gap: 2rem; }
 .main-nav a { font-weight: 600; font-size: .95rem; color: var(--text-secondary); transition: color .15s; }
 .main-nav a:hover { color: var(--brand); }
 .header-actions { display: flex; align-items: center; gap: 1.25rem; }
 .phone-link { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--navy-800); }
-.phone-link svg { color: var(--accent); }
+.phone-link svg { color: var(--orange-500); }
 
 .nav-toggle {
   display: flex; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px;
@@ -157,14 +169,15 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(1100px 600px at 85% -10%, rgba(42,120,214,.35), transparent 60%),
-    radial-gradient(800px 500px at 10% 110%, rgba(235,104,52,.18), transparent 60%),
+    radial-gradient(1100px 600px at 85% -10%, rgba(30,172,218,.30), transparent 60%),
+    radial-gradient(800px 500px at 10% 110%, rgba(235,104,52,.14), transparent 60%),
     linear-gradient(160deg, var(--navy-900), var(--navy-800));
 }
 .hero-inner { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: start; }
-.eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .8rem; margin-bottom: .75rem; }
+.eyebrow { color: var(--orange-700); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .8rem; margin-bottom: .75rem; }
+.hero .eyebrow { color: var(--logo-cyan); }
 .hero h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); color: #fff; margin-bottom: .6em; }
-.text-accent { color: #ffb38a; }
+.text-accent { color: var(--logo-cyan); }
 .hero-sub { color: rgba(255,255,255,.78); font-size: 1.1rem; max-width: 46ch; margin-bottom: 1.75rem; }
 
 .hero-form { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-md); padding: 1.25rem; backdrop-filter: blur(6px); }
@@ -177,7 +190,8 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .form-microcopy.centered { text-align: center; color: var(--text-muted); }
 
 .trust-bar { display: flex; align-items: center; gap: .75rem; margin-top: 1.5rem; color: rgba(255,255,255,.85); font-size: .9rem; flex-wrap: wrap; }
-.stars { color: var(--accent); letter-spacing: .1em; font-size: 1rem; }
+.stars { color: var(--orange-700); letter-spacing: .1em; font-size: 1rem; }
+.hero .stars, .site-footer .stars { color: var(--orange-500); }
 
 .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .stat-card {
@@ -185,11 +199,37 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
   padding: 1.25rem; text-align: left;
 }
 .stat-number { font-size: 2rem; font-weight: 800; color: #fff; }
-.stat-suffix { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.stat-suffix { font-size: 1.3rem; font-weight: 800; color: var(--orange-500); }
 .stat-card p { color: rgba(255,255,255,.65); font-size: .85rem; margin: .35rem 0 0; }
 
-.trust-strip { background: var(--surface-1); border-bottom: 1px solid var(--border-hairline); padding: 1rem 0; }
-.trust-strip p { text-align: center; color: var(--text-muted); font-size: .85rem; margin: 0; font-weight: 600; letter-spacing: .02em; }
+.trust-strip { background: var(--surface-1); border-bottom: 1px solid var(--border-hairline); padding: 1.5rem 0; }
+.trust-strip .trust-caption { text-align: center; color: var(--text-muted); font-size: .85rem; margin: 0 0 1rem; font-weight: 600; letter-spacing: .02em; }
+
+.logo-marquee {
+  overflow: hidden; position: relative; width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.logo-track {
+  display: flex; align-items: center; gap: 3rem; width: max-content;
+  animation: marquee-scroll 46s linear infinite;
+}
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+.logo-track img {
+  height: 28px; width: auto; flex-shrink: 0; filter: grayscale(100%); opacity: .55;
+  transition: opacity .2s ease, filter .2s ease;
+}
+.logo-track img:hover { filter: grayscale(0%); opacity: 1; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; overflow-x: auto; }
+}
+@media (max-width: 640px) {
+  .logo-track img { height: 22px; }
+}
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
@@ -218,9 +258,9 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .service-icon svg { width: 26px; height: 26px; }
 .service-card h3 { font-size: 1.15rem; color: var(--navy-900); }
 .service-link { display: inline-block; margin-top: .5rem; font-weight: 700; color: var(--brand); }
-.service-card.featured .service-link { color: var(--orange-500); }
+.service-card.featured .service-link { color: var(--orange-700); }
 .badge {
-  position: absolute; top: 1.4rem; right: 1.4rem; background: var(--orange-100); color: var(--orange-500);
+  position: absolute; top: 1.4rem; right: 1.4rem; background: var(--orange-100); color: var(--orange-700);
   font-size: .72rem; font-weight: 800; padding: .3rem .6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: .03em;
 }
 
@@ -265,7 +305,7 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .result-donut {
   --p: 50;
   width: 180px; height: 180px; border-radius: 50%;
-  background: conic-gradient(var(--blue-500) calc(var(--p) * 1%), var(--orange-500) 0);
+  background: conic-gradient(var(--chart-blue) calc(var(--p) * 1%), var(--orange-500) 0);
   display: flex; align-items: center; justify-content: center; position: relative;
 }
 .result-donut::before { content: ""; position: absolute; inset: 16px; background: var(--surface-1); border-radius: 50%; box-shadow: inset 0 0 0 1px var(--border-hairline); }
@@ -279,7 +319,7 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .result-legend li.total { border-bottom: none; font-weight: 800; padding-top: .25rem; }
 .result-legend li.total strong { color: var(--accent); }
 .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: .5rem; }
-.dot-1 { background: var(--blue-500); }
+.dot-1 { background: var(--chart-blue); }
 .dot-2 { background: var(--orange-500); }
 
 .result-big { display: flex; flex-direction: column; gap: .25rem; }
@@ -368,6 +408,7 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 /* ============ Footer ============ */
 .site-footer { background: var(--navy-900); color: rgba(255,255,255,.7); padding: 64px 0 24px; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+.footer-brand .logo img { height: 42px; }
 .footer-brand p { color: rgba(255,255,255,.55); font-size: .9rem; margin: .75rem 0; }
 .footer-col h4 { color: #fff; font-size: .95rem; margin-bottom: 1rem; }
 .footer-col ul { display: grid; gap: .6rem; }
