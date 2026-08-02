@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelto | Solutions hypothécaires, prêts privés &amp; financement commercial au Québec</title>
+<meta name="description" content="Kelto vous accompagne pour votre hypothèque neuve, renouvellement, refinancement, prêt privé, prêt alternatif ou financement commercial. Soumission gratuite en 2 minutes.">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAYFBMVEUWZZ0apdEerNsertwqXY4rX5EmVXEAAP8cbKEdq9lVVaoAf/8EoKwZhrgVNGoAPz8jxfkAAAAsYJMerNoVV44gt+cqXpEAf38A//89P34erNsAv78rYJIesN4Aqv8sYZOOwppoAAAAIHRSTlMUIeqfXJ4MAf5TAwIF/wUE/wD+/v7+/AIBBGYEY/ID0ryRbwkAAAIESURBVHja5ZfZmoMgDIURqbh1ZlKkoK32/d9ywK3gQhEvmzv9OL85SaAFwclA3wcQEToDoN25DJQ8imMkAwGFBNS0nGfQhQCkUmWYY8YbeAQAkM6ec8bCAKWWt1oeBChK+GlGeQBAPnrzk/4woJvNBwFK+TYfABDq840tPwKgal2E+ULvD1iZPwaQBZSr7P0B89wGAtBO9p6ADlatswCZGzBuWrYfERT7AIn2zY8JxOA4UKTL/KBnkSx2AdJpXst5HIHYPROFVIPnkCtrGSz0FuABzd97eYv7jI3Ptw0CKRynMpVGAThOVVxnBG9V9vD5WB9bwFlaDXFleDK/OXXLNvZDgNm1miPF6ijX5jvp89PWjyFOKzNSlpVgN28foJ7ry72y40Z+QAgvgICE3FSYiLt6fhGAnPpkQF5KrRGmXL+56Nw+AQS6qMW9ZEpietCIZKsP5psaSHpzBfkFJB0AQdHLIb8PpXCMMlBIDA9rwuBDgHM7IydCJYHs7bCoCq2NRmwjLiCc/1BEAcnTWQlkETb2Rz742M2CWPOweazXYym2Ac/PAKC5oxQ+ANB7Z9gVoQBHKXwBQyk2fPgDQGyW4gAAIJHr6T4EmEthIA4C1tN9FKDPGYBnsIVp1bsUIQBrusMA83QHA4bpVqVIie5M2JWnbylJztza8vPXvqT++qvvKv4BXyoT2Yg6F7EAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Passer au contenu principal</a>
+
+<!-- ============ BARRE QUEBEC ============ -->
+<div class="qc-bar">
+  <div class="container qc-bar-inner">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAABQCAYAAAA9Wdq3AAAZ90lEQVR4nO2deXgdxZX2f1XdfffftkiUvsuV9AccbNgazGYc1ITBkCBDCkI8dBoYQCJOBL5DAkATywewhX8JiAkwyLAPGQIAYDAGMAzbesY13y5ZlyZJsbXfr7qqaP/rea9kZMpGs65Beb1XdVdWnfnW2c65rZ6qqqizIqDlAiWhCKaWACgA6EmH80NrREYA6imMkAwGFBNS0nGfQhQCkUmWYY8YbeAQAkM6ec8bCAKWWt1oeBChK+GlGeQBAPnrzk/4woJvNBwFK+TYfABDq840tPwKgal2E+ULvD1iZPwaQBZSr7P0B89wGAtBO9p6ADlatswCZGzBuWrYfERT7AIn2zY8JxOA4UKTL/KBnkSx2AdJpXst5HIHYPROFVIPnkCtrGSz0FuABzd97eYv7jI3Ptw0CKRynMpVGAThOVVxnBG9V9vD5WB9bwFlaDXFleDK/OXXLNvZDgNm1miPF6ijX5jvp89PWjyFOKzNSlpVgN28foJ7ry72y40Z+QAgvgICE3FSYiLt6fhGAnPpkQF5KrRGmXL+56Nw+AQS6qMW9ZEpietCIZKsP5psaSHpzBfkFJB0AQdHLIb8PpXCMMlBIDA9rwuBDgHM7IydCJYHs7bCoCq2NRmwjLiCc/1BEAcnTWQlkETb2Rz742M2CWPOweazXYym2Ac/PAKC5oxQ+ANB7Z9gVoQBHKXwBQyk2fPgDQGyW4gAAIJHr6T4EmEthIA4C1tN9FKDPGYBnsIVp1bsUIQBrusMA83QHA4bpVqVIie5M2JWnbylJztza8vPXvqT++qvvKv4BXyoT2Yg6F7EAAAAASUVORK5CYII=" alt="Drapeau du Québec" width="24" height="16" class="qc-flag">
+    <span>Fière entreprise québécoise</span>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="logo"><img src="data:image/png;base64,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" alt="Kelto"></a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#calculatrices">Calculatrices</a></li>
+        <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="#temoignages">Témoignages</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:+15146606655" class="phone-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>(514) 660-6655</span>
+      </a>
+      <a href="#soumission" class="btn btn-primary btn-header">Soumission gratuite</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-content reveal">
+      <p class="eyebrow">Courtage hypothécaire &amp; financement — Québec</p>
+      <h1>Le bon financement, <span class="text-accent">peu importe votre situation.</span></h1>
+      <p class="hero-sub">Hypothèque neuve, renouvellement, refinancement, prêt privé, prêt alternatif ou financement commercial : un conseiller Kelto analyse votre dossier et négocie pour vous, sans frais, sans engagement.</p>
+
+      <form class="hero-form" id="heroForm">
+        <div class="hero-form-row">
+          <select name="scenario" id="heroScenario" aria-label="Choisissez votre situation">
+            <option value="new">Hypothèque neuve</option>
+            <option value="renewal">Renouvellement</option>
+            <option value="refinance">Refinancement</option>
+            <option value="private">Prêt privé</option>
+            <option value="alternative">Prêt alternatif</option>
+            <option value="commercial">Financement commercial</option>
+          </select>
+          <input type="tel" name="phone" placeholder="Votre numéro de téléphone" required inputmode="tel">
+          <button type="submit" class="btn btn-primary">Obtenir ma soumission</button>
+        </div>
+        <p class="form-microcopy">🔒 100% confidentiel · Réponse en moins de 24h · Aucun impact sur votre cote de crédit</p>
+      </form>
+
+      <div class="trust-bar">
+        <div class="stars" aria-label="Note de 5 sur 5 étoiles">★★★★★</div>
+        <span>4,9/5 — plus de 2 000 clients accompagnés</span>
+      </div>
+    </div>
+
+    <div class="hero-stats reveal">
+      <div class="stat-card">
+        <span class="stat-number" data-count="2000">0</span><span class="stat-suffix">+</span>
+        <p>Clients accompagnés</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-count="250">0</span><span class="stat-suffix">M$+</span>
+        <p>Financement placé</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-count="30">0</span><span class="stat-suffix">+</span>
+        <p>Prêteurs partenaires (banques, privés, alternatifs)</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" data-count="24">0</span><span class="stat-suffix">h</span>
+        <p>Délai de réponse moyen</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGOS / TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="container">
+    <p class="trust-caption">Solutions négociées auprès de plus de 30 prêteurs : banques, prêteurs alternatifs et prêteurs privés</p>
+    <div class="logo-marquee" role="img" aria-label="Institutions partenaires : Architectes Hypothécaires, B2B Banque, Banque Nationale, Banque Scotia, BMO, CIBC, CMLS Financial, Desjardins, EQ Bank, First National, Haventree Bank, Home Trust, Lendwise, Manuvie, MCAP, Merix Financial, SCHL / CMHC, TD Canada Trust, Wiseday">
+          <div class="logo-track" aria-hidden="false">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATEAAABICAMAAACp4TLnAAAAYFBMVEUAAAABnsmjqqz09fYWqtlydHWcpKkGocsF+fsOpMwJrbKp2+Bro6WYoKVwe4Fq4eprdn0JenoAff1Xs995g4ppdXtwfIIAAP8FeLl3g4l2gYdxfYKsttVpdXtuc5/zrKzx+eqWAAAAIHRSTlMA8xcEFgdfoQJcBAkJj+QH5QICC6WmoQEEWtZcDmsMBC2ggkAAABZWSURBVHja7VyJltuqkm88iCwLZFlu3939/385depAAkluJ++c5MycCXnptrUUxaWWW0CeUv/av/av/d9odmrX+b3e5s2svl/XxZexReFNcV+aDvM3FjKtTVfLm/ztchl7uqTfatazdN/UTbPQbPX5I6na/xJgl6ZprtKsWiKmais3m6vtfmMeLvyzsaRE0nlq3XJqcm1re+RfzU9DuMRni1/l57rHiOzFNvxFrT2T99kTwG8HZjrVZVY0qMKOjC9s7IWJZoB0tk7mSE/7C1vw0iqNGTU78hsegpIMTMwQ36tJw+Y4veqpB5oHGl+I/dQN/ero7WkMUXIjDoSuGtUZfsDIaDs1kKSGPze1VSasa7rS+tpusmaVz2+qXX5zO6zMwKXebW2c8Iuy27FZ1Ti12+I9AuQyvTFYtdupNJvpjZ1VoxM++bUNXRygw9aOJlGb3a6pA12y2288seCsxxYIQABAAAA//8oigDhwYlAAAAABJRU5ErkJggg==" alt="Architectes Hypothécaires" loading="lazy">
