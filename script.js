@@ -18,6 +18,13 @@
   document.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- Logo marquee: duplicate track content for a seamless loop ---------- */
+  const logoTrack = $(".logo-track");
+  if (logoTrack) {
+    logoTrack.setAttribute("aria-hidden", "true");
+    logoTrack.innerHTML += logoTrack.innerHTML;
+  }
+
   /* ---------- Mobile nav ---------- */
   const navToggle = $("#navToggle");
   const mainNav = $("#mainNav");
