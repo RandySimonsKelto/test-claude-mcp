@@ -265,4 +265,113 @@
       }
     });
   });
+
+  /* ---------- Hero particle canvas (cursor-reactive) ---------- */
+  (() => {
+    const canvas = $("#heroCanvas");
+    const hero = $(".hero");
+    if (!canvas || !hero || !canvas.getContext) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = canvas.getContext("2d");
+    let width, height, particles = [];
+    const mouse = { x: null, y: null, active: false };
+    let running = false, rafId = null;
+
+    const PARTICLE_COUNT = 55;
+    const MAX_LINK_DIST = 130;
+    const MOUSE_RADIUS = 150;
+
+    function resize() {
+      width = canvas.width = hero.offsetWidth;
+      height = canvas.height = hero.offsetHeight;
+    }
+
+    function initParticles() {
+      particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.6 + 0.6,
+      }));
+    }
+
+    function step() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        if (mouse.active) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < MOUSE_RADIUS && dist > 0.01) {
+            const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+            p.x += (dx / dist) * force * 1.4;
+            p.y += (dy / dist) * force * 1.4;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(30, 172, 218, 0.55)";
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < MAX_LINK_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(30, 172, 218, ${0.16 * (1 - dist / MAX_LINK_DIST)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      if (running) rafId = requestAnimationFrame(step);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      rafId = requestAnimationFrame(step);
+    }
+    function stop() {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    }
+
+    resize();
+    initParticles();
+
+    window.addEventListener("resize", () => { resize(); initParticles(); });
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+    hero.addEventListener("mouseleave", () => { mouse.active = false; });
+
+    if ("IntersectionObserver" in window) {
+      const ioHero = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { entry.isIntersecting ? start() : stop(); });
+      }, { threshold: 0 });
+      ioHero.observe(hero);
+    } else {
+      start();
+    }
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else if (hero.getBoundingClientRect().top < window.innerHeight) start();
+    });
+  })();
 })();
