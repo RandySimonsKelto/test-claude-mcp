@@ -29,9 +29,10 @@
      Images are kept as separate small text files under assets/img/ (instead
      of being embedded inline) so they stay reliable to store/update. This
      fetches each one and injects it as a data: URI once loaded. ---------- */
+  const ASSETS_BASE = "https://kelto-assets.vercel.app/";
   $$("[data-img-src]").forEach((img) => {
     const path = img.getAttribute("data-img-src");
-    fetch(path)
+    fetch(ASSETS_BASE + path)
       .then((r) => r.text())
       .then((text) => {
         img.src = "data:image/png;base64," + text.replace(/\s+/g, "");
