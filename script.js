@@ -280,7 +280,7 @@
 
     const PARTICLE_COUNT = 55;
     const MAX_LINK_DIST = 130;
-    const MOUSE_RADIUS = 150;
+    const MOUSE_RADIUS = 220;
 
     function resize() {
       width = canvas.width = hero.offsetWidth;
@@ -299,25 +299,37 @@
 
     function step() {
       ctx.clearRect(0, 0, width, height);
+
+      if (mouse.active) {
+        const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 240);
+        glow.addColorStop(0, "rgba(255, 255, 255, 0.14)");
+        glow.addColorStop(0.5, "rgba(255, 255, 255, 0.05)");
+        glow.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, width, height);
+      }
+
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
+        let brightness = 0.55;
         if (mouse.active) {
           const dx = p.x - mouse.x, dy = p.y - mouse.y;
           const dist = Math.hypot(dx, dy);
           if (dist < MOUSE_RADIUS && dist > 0.01) {
             const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
-            p.x += (dx / dist) * force * 1.4;
-            p.y += (dy / dist) * force * 1.4;
+            p.x += (dx / dist) * force * 2.2;
+            p.y += (dy / dist) * force * 2.2;
+            brightness = 0.55 + force * 0.4;
           }
         }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(30, 172, 218, 0.55)";
+        ctx.fillStyle = `rgba(30, 172, 218, ${brightness})`;
         ctx.fill();
       });
 
