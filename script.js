@@ -385,11 +385,11 @@
       noteParts.push(`${k}: ${v}`);
     }
 
-    window.Cal("init", "kelto-hypotheques", { origin: "https://cal.com" });
+    window.Cal("init", "kelto-hypotheques", { origin: "https://app.cal.com" });
     window.Cal.ns["kelto-hypotheques"]("inline", {
       elementOrSelector: "#calEmbed",
       config: { layout: "month_view", name: nom, email: courriel, notes: noteParts.join(" | ") },
-      calLink: "kelto-hypotheques",
+      calLink: "kelto-hypotheques/15min",
     });
     window.Cal.ns["kelto-hypotheques"]("ui", { styles: { branding: { brandColor: "#134e86" } }, hideEventTypeDetails: false, layout: "month_view" });
   }
