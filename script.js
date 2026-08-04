@@ -31,6 +31,12 @@
     logoTrack.innerHTML += logoTrack.innerHTML;
   }
 
+  /* ---------- Testimonials marquee: duplicate track content for a seamless loop ---------- */
+  const testimonialsTrack = $("#testimonialsTrack");
+  if (testimonialsTrack) {
+    testimonialsTrack.innerHTML += testimonialsTrack.innerHTML;
+  }
+
   /* ---------- Load image assets stored as small base64 text files ----------
      Images are kept as separate small text files under assets/img/ (instead
      of being embedded inline) so they stay reliable to store/update. This
@@ -201,6 +207,7 @@
 
   /* ---------- Calc 2: Capacité d'emprunt ---------- */
   const cRevenu = $("#cRevenu"), cDettes = $("#cDettes"), cMiseFonds = $("#cMiseFonds"), cTaux = $("#cTaux");
+  const cAmort = $("#cAmort"), cAmortVal = $("#cAmortVal");
   const cPrixMax = $("#cPrixMax"), cHypoMax = $("#cHypoMax"), cTauxQual = $("#cTauxQual");
 
   function updateCapacityCalc() {
@@ -208,6 +215,8 @@
     const dettesMensuelles = parseFloat(cDettes.value) || 0;
     const miseFonds = parseFloat(cMiseFonds.value) || 0;
     const tauxContractuel = parseFloat(cTaux.value) || 0;
+    const amortAnnees = parseInt(cAmort.value, 10);
+    if (cAmortVal) cAmortVal.textContent = `${amortAnnees} ans`;
 
     const tauxQualification = Math.max(tauxContractuel + 2, 5.25);
     cTauxQual.textContent = `${tauxQualification.toFixed(2)} %`;
@@ -218,13 +227,13 @@
     const capaciteGDS = revenuMensuel * 0.39 - estimationTaxesChauffage;
     const paiementMaxMensuel = Math.max(Math.min(capaciteTDS, capaciteGDS), 0);
 
-    const hypoMax = maxPrincipalFromPayment(paiementMaxMensuel, tauxQualification, 25, 12);
+    const hypoMax = maxPrincipalFromPayment(paiementMaxMensuel, tauxQualification, amortAnnees, 12);
     const prixMax = hypoMax + miseFonds;
 
     cHypoMax.textContent = fmtMoney(hypoMax);
     cPrixMax.textContent = fmtMoney(prixMax);
   }
-  [cRevenu, cDettes, cMiseFonds, cTaux].forEach((el) => el.addEventListener("input", updateCapacityCalc));
+  [cRevenu, cDettes, cMiseFonds, cTaux, cAmort].forEach((el) => el.addEventListener("input", updateCapacityCalc));
   updateCapacityCalc();
 
   /* ---------- Calc 3: Économies au renouvellement ---------- */
