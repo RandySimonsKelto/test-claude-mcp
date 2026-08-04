@@ -130,6 +130,11 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
   transition: box-shadow .2s ease;
 }
 .site-header.scrolled { box-shadow: var(--shadow-sm); }
+.scroll-progress {
+  position: fixed; top: 0; left: 0; width: 0%; height: 3px; z-index: 110;
+  background: linear-gradient(90deg, var(--logo-cyan), var(--brand));
+  transition: width .1s linear;
+}
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 24px;
@@ -141,6 +146,13 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .main-nav ul { display: flex; gap: 2rem; }
 .main-nav a { font-weight: 600; font-size: .95rem; color: var(--text-secondary); transition: color .15s; }
 .main-nav a:hover { color: var(--brand); }
+.main-nav a { position: relative; }
+.main-nav a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 2px;
+  background: var(--brand); transition: right .25s ease;
+}
+.main-nav a.active { color: var(--brand); }
+.main-nav a.active::after { right: 0; }
 .header-actions { display: flex; align-items: center; gap: 1.25rem; }
 .phone-link { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--navy-800); }
 .phone-link svg { color: var(--orange-500); }
@@ -519,3 +531,27 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .hero-content.reveal.in-view > *:nth-child(3) { transition-delay: .2s; }
 .hero-content.reveal.in-view > *:nth-child(4) { transition-delay: .3s; }
 .hero-content.reveal.in-view > *:nth-child(5) { transition-delay: .4s; }
+
+/* ============ Staggered grid reveal ============ */
+.services-grid .service-card:nth-child(1) { transition-delay: 0s; }
+.services-grid .service-card:nth-child(2) { transition-delay: .08s; }
+.services-grid .service-card:nth-child(3) { transition-delay: .16s; }
+.services-grid .service-card:nth-child(4) { transition-delay: .24s; }
+.services-grid .service-card:nth-child(5) { transition-delay: .32s; }
+.services-grid .service-card:nth-child(6) { transition-delay: .4s; }
+
+.steps-grid .step-card:nth-child(1) { transition-delay: 0s; }
+.steps-grid .step-card:nth-child(2) { transition-delay: .1s; }
+.steps-grid .step-card:nth-child(3) { transition-delay: .2s; }
+
+.advantages-grid .advantage-card:nth-child(1) { transition-delay: 0s; }
+.advantages-grid .advantage-card:nth-child(2) { transition-delay: .08s; }
+.advantages-grid .advantage-card:nth-child(3) { transition-delay: .16s; }
+.advantages-grid .advantage-card:nth-child(4) { transition-delay: .24s; }
+
+.testimonials-grid .testimonial-card:nth-child(1) { transition-delay: 0s; }
+.testimonials-grid .testimonial-card:nth-child(2) { transition-delay: .08s; }
+.testimonials-grid .testimonial-card:nth-child(3) { transition-delay: .16s; }
+.testimonials-grid .testimonial-card:nth-child(4) { transition-delay: .24s; }
+.testimonials-grid .testimonial-card:nth-child(5) { transition-delay: .32s; }
+.testimonials-grid .testimonial-card:nth-child(6) { transition-delay: .4s; }
