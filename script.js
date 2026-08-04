@@ -215,6 +215,65 @@
   [sSolde, sTauxActuel, sNouveauTaux, sAnnees].forEach((el) => el.addEventListener("input", updateSavingsCalc));
   updateSavingsCalc();
 
+  /* ---------- Calc 4: Financement commercial ---------- */
+  const ktTypeImmeuble = $("#ktTypeImmeuble");
+  const ktModeButtons = $$(".subtoggle-btn[data-commercial-mode]");
+  const ktFieldGroups = $$("[data-commercial-fields]");
+  const ktPrixAchat = $("#ktPrixAchat"), ktMiseFonds = $("#ktMiseFonds");
+  const ktValeurActuelle = $("#ktValeurActuelle"), ktSoldeActuel = $("#ktSoldeActuel");
+  const ktTaux = $("#ktTaux"), ktAmort = $("#ktAmort"), ktAmortVal = $("#ktAmortVal");
+  const ktResultLabel = $("#ktResultLabel"), ktResultValue = $("#ktResultValue");
+  const ktLegendRefinance = $("#ktLegendRefinance"), ktValeurMax = $("#ktValeurMax"), ktSoldeAffiche = $("#ktSoldeAffiche"), ktEquiteDispo = $("#ktEquiteDispo");
+  const aphSelectNote = $("#aphSelectNote");
+  let ktMode = "achat";
+  const LTV_COMMERCIAL = 0.75;
+
+  function updateAphNote() {
+    if (aphSelectNote) aphSelectNote.hidden = ktTypeImmeuble.value !== "multi";
+  }
+
+  function updateCommercialCalc() {
+    const taux = parseFloat(ktTaux.value) || 0;
+    const amort = parseInt(ktAmort.value, 10);
+    ktAmortVal.textContent = `${amort} ans`;
+
+    if (ktMode === "achat") {
+      const prix = parseFloat(ktPrixAchat.value) || 0;
+      const mise = parseFloat(ktMiseFonds.value) || 0;
+      const pret = Math.max(prix - mise, 0);
+      const paiement = paymentAmount(pret, taux, amort, 12);
+      ktResultLabel.textContent = "Paiement mensuel estimé";
+      ktResultValue.textContent = fmtMoney(paiement);
+      ktLegendRefinance.hidden = true;
+    } else {
+      const valeur = parseFloat(ktValeurActuelle.value) || 0;
+      const solde = parseFloat(ktSoldeActuel.value) || 0;
+      const valeurMax = valeur * LTV_COMMERCIAL;
+      const equite = Math.max(valeurMax - solde, 0);
+      const paiement = paymentAmount(solde, taux, amort, 12);
+      ktResultLabel.textContent = "Nouveau paiement mensuel estimé (solde actuel)";
+      ktResultValue.textContent = fmtMoney(paiement);
+      ktValeurMax.textContent = fmtMoney(valeurMax);
+      ktSoldeAffiche.textContent = fmtMoney(solde);
+      ktEquiteDispo.textContent = fmtMoney(equite);
+      ktLegendRefinance.hidden = false;
+    }
+  }
+
+  ktModeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      ktMode = btn.dataset.commercialMode;
+      ktModeButtons.forEach((b) => { b.classList.toggle("active", b === btn); b.setAttribute("aria-pressed", String(b === btn)); });
+      ktFieldGroups.forEach((g) => { g.hidden = g.dataset.commercialFields !== ktMode; });
+      updateCommercialCalc();
+    });
+  });
+
+  ktTypeImmeuble.addEventListener("change", updateAphNote);
+  [ktPrixAchat, ktMiseFonds, ktValeurActuelle, ktSoldeActuel, ktTaux, ktAmort].forEach((el) => el.addEventListener("input", updateCommercialCalc));
+  updateAphNote();
+  updateCommercialCalc();
+
   /* ---------- Scenario tabs (lead form) ---------- */
   const scenarioTabs = $$(".scenario-tab");
   const scenarioPanels = $$(".scenario-panel");
