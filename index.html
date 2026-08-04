@@ -251,6 +251,7 @@
         <button class="calc-tab active" role="tab" aria-selected="true" data-calc="payment">Paiement hypothécaire</button>
         <button class="calc-tab" role="tab" aria-selected="false" data-calc="capacity">Capacité d'emprunt</button>
         <button class="calc-tab" role="tab" aria-selected="false" data-calc="savings">Économies au renouvellement</button>
+        <button class="calc-tab" role="tab" aria-selected="false" data-calc="commercial">Financement commercial</button>
       </div>
 
       <!-- Calc 1: paiement -->
@@ -345,6 +346,62 @@
             <li>Nouveau paiement mensuel <strong id="sNouveauPaiement">0 $</strong></li>
             <li class="total">Économies totales sur la période <strong id="sEconomieTotale">0 $</strong></li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Calc 4: commercial -->
+      <div class="calc-panel" id="calc-commercial" role="tabpanel">
+        <div class="calc-form">
+          <div class="calc-subtoggle" role="tablist" aria-label="Type d'opération">
+            <button type="button" class="subtoggle-btn active" data-commercial-mode="achat" aria-pressed="true">Achat</button>
+            <button type="button" class="subtoggle-btn" data-commercial-mode="refinance" aria-pressed="false">Refinancement</button>
+          </div>
+          <label>Type d'immeuble
+            <select id="ktTypeImmeuble">
+              <option value="multi">Multi-logements (5+ unités)</option>
+              <option value="commercial">Immeuble commercial</option>
+              <option value="mixte">Immeuble mixte</option>
+            </select>
+          </label>
+          <div class="commercial-fields" data-commercial-fields="achat">
+            <label>Prix d'achat visé ($)
+              <input type="number" id="ktPrixAchat" value="1200000" min="0" step="10000">
+            </label>
+            <label>Mise de fonds disponible ($)
+              <input type="number" id="ktMiseFonds" value="300000" min="0" step="10000">
+            </label>
+          </div>
+          <div class="commercial-fields" data-commercial-fields="refinance" hidden>
+            <label>Valeur actuelle de l'immeuble ($)
+              <input type="number" id="ktValeurActuelle" value="1500000" min="0" step="10000">
+            </label>
+            <label>Solde hypothécaire actuel ($)
+              <input type="number" id="ktSoldeActuel" value="700000" min="0" step="10000">
+            </label>
+          </div>
+          <label>Taux d'intérêt annuel (%)
+            <input type="number" id="ktTaux" value="5.49" min="0" step="0.01">
+          </label>
+          <label>Amortissement (années)
+            <input type="range" id="ktAmort" min="5" max="30" value="25" step="1">
+            <output id="ktAmortVal">25 ans</output>
+          </label>
+        </div>
+        <div class="calc-result">
+          <div class="result-big">
+            <span class="result-big-label" id="ktResultLabel">Paiement mensuel estimé</span>
+            <span class="result-big-value" id="ktResultValue">0 $</span>
+          </div>
+          <ul class="result-legend" id="ktLegendRefinance" hidden>
+            <li>Valeur maximale empruntable (75 % LTV) <strong id="ktValeurMax">0 $</strong></li>
+            <li>Solde hypothécaire actuel <strong id="ktSoldeAffiche">0 $</strong></li>
+            <li class="total">Équité disponible estimée <strong id="ktEquiteDispo">0 $</strong></li>
+          </ul>
+          <p class="calc-disclaimer">Estimation simplifiée à titre indicatif seulement (ratio prêt-valeur type de 75 % pour un immeuble commercial standard, hors financement assuré). Chaque dossier commercial est unique — un conseiller Kelto vous donnera un portrait précis.</p>
+          <div class="aph-select-note" id="aphSelectNote" hidden>
+            <strong>Admissible au programme APH Select (SCHL) ?</strong>
+            <p>Pour les immeubles de 5 logements et plus, le programme APH Select de la SCHL peut permettre un financement jusqu'à 95 % de la valeur et un amortissement jusqu'à 50 ans selon les critères d'abordabilité, d'efficacité énergétique ou d'accessibilité atteints. Depuis juin 2024, il offre aussi plus de flexibilité pour retirer de l'équité lors d'un refinancement — un levier intéressant pour financer votre prochaine acquisition. Parlez-en à un conseiller Kelto pour valider votre admissibilité.</p>
+          </div>
         </div>
       </div>
 
@@ -571,6 +628,9 @@
 
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final">
+  <svg class="cta-divider" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path class="cta-divider-path" d="M0,40 C240,0 480,70 720,36 C960,4 1200,60 1440,20 L1440,0 L0,0 Z"></path>
+  </svg>
   <div class="container cta-final-inner reveal">
     <h2>Prêt à obtenir votre financement ?</h2>
     <p>Parlez à un conseiller dès aujourd'hui — gratuit, rapide, sans engagement.</p>
