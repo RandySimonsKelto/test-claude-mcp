@@ -437,6 +437,38 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
+/* ============ Multi-step wizard (Soumission) ============ */
+.wizard-widget { background: var(--surface-1); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); overflow: hidden; padding: 2.5rem; }
+.wizard-progress { height: 4px; background: var(--gridline); border-radius: 999px; overflow: hidden; margin-bottom: .75rem; }
+.wizard-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--logo-cyan), var(--brand)); transition: width .35s ease; }
+.wizard-step-count { font-size: .82rem; color: var(--text-muted); font-weight: 700; margin-bottom: 1.75rem; }
+.wizard-step { display: none; animation: fadeIn .3s ease; }
+.wizard-step.active { display: block; }
+.wizard-step h3 { color: var(--navy-900); margin-bottom: .35rem; }
+.wizard-step label { display: flex; flex-direction: column; gap: .5rem; font-weight: 700; font-size: .95rem; margin-top: 1.25rem; max-width: 420px; }
+.wizard-step input, .wizard-step select {
+  padding: .85rem 1rem; border: 1px solid var(--gridline); border-radius: var(--radius-sm); font-weight: 500; font-size: 1rem;
+  background: var(--page-plane); color: var(--text-primary);
+}
+.wizard-step input:focus, .wizard-step select:focus { border-color: var(--brand); background: #fff; }
+.wizard-choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.wizard-choice {
+  padding: 1.5rem 1rem; border: 1px solid var(--gridline); border-radius: var(--radius-md); background: var(--page-plane);
+  font-weight: 700; font-size: .98rem; color: var(--navy-900); text-align: center;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+.wizard-choice:hover { border-color: var(--brand); background: var(--blue-100); transform: translateY(-3px); }
+.wizard-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; gap: 1rem; }
+.wizard-nav .wizard-next { margin-left: auto; }
+.cal-embed { width: 100%; min-height: 600px; margin-top: 1.5rem; }
+@media (max-width: 780px) {
+  .wizard-widget { padding: 1.5rem; }
+  .wizard-choice-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .wizard-choice-grid { grid-template-columns: 1fr; }
+}
+
 /* ============ Advantages ============ */
 .advantages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 .advantage-card { text-align: center; padding: 1.5rem 1rem; border-radius: var(--radius-md); transition: background .2s ease, transform .2s ease; }
