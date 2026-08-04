@@ -11,9 +11,15 @@
 
   /* ---------- Sticky header shadow ---------- */
   const header = $("#siteHeader");
+  const scrollProgress = $("#scrollProgress");
   const onScroll = () => {
     header.classList.toggle("scrolled", window.scrollY > 8);
     $("#backToTop").classList.toggle("visible", window.scrollY > 600);
+    if (scrollProgress) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min((window.scrollY / docHeight) * 100, 100) : 0;
+      scrollProgress.style.width = pct + "%";
+    }
   };
   document.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
@@ -81,6 +87,25 @@
     revealItems.forEach((el) => io.observe(el));
   } else {
     revealItems.forEach((el) => el.classList.add("in-view"));
+  }
+
+  /* ---------- Scroll-spy active nav link ---------- */
+  const navLinks = $$(".main-nav a[href^='#']");
+  const spySections = navLinks
+    .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
+    .filter(Boolean);
+  if ("IntersectionObserver" in window && spySections.length) {
+    const ioSpy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const link = navLinks.find((a) => a.getAttribute("href") === "#" + entry.target.id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((a) => a.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    spySections.forEach((sec) => ioSpy.observe(sec));
   }
 
   /* ---------- Animated counters ---------- */
