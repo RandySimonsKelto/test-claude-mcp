@@ -310,42 +310,167 @@
   updateAphNote();
   updateCommercialCalc();
 
-  /* ---------- Scenario tabs (lead form) ---------- */
-  const scenarioTabs = $$(".scenario-tab");
-  const scenarioPanels = $$(".scenario-panel");
-  function activateScenario(key) {
-    scenarioTabs.forEach((t) => { t.classList.toggle("active", t.dataset.scenario === key); t.setAttribute("aria-selected", String(t.dataset.scenario === key)); });
-    scenarioPanels.forEach((p) => p.classList.toggle("active", p.dataset.panel === key));
-  }
-  scenarioTabs.forEach((tab) => tab.addEventListener("click", () => activateScenario(tab.dataset.scenario)));
+  /* ---------- Multi-step "soumission" wizard ---------- */
+  const wizardWidget = $("#wizardWidget");
+  const scenarioForm = $("#scenarioForm");
+  const wizardProgressBar = $("#wizardProgressBar");
+  const wizardStepCount = $("#wizardStepCount");
+  const wizardBack = $("#wizardBack");
+  const wizardNext = $("#wizardNext");
+  const wizardNav = wizardWidget ? $(".wizard-nav", wizardWidget) : null;
+  const wizardSteps = wizardWidget ? $$(".wizard-step", wizardWidget) : [];
+  const CONTACT_STEPS = ["contact-nom", "contact-telephone", "contact-courriel"];
+  const TOTAL_STEPS = 4 + CONTACT_STEPS.length + 1 + 1; // 4 champs scénario + 3 coordonnées + 1 réservation + 1 étape de choix du projet
+  let wizardScenario = null;
+  let wizardSequence = [];
+  let wizardIndex = 0;
+  let calInitialized = false;
 
-  // Deep-link from service cards to the matching scenario tab/panel
+  function stepsForScenario(key) {
+    return [`${key}-1`, `${key}-2`, `${key}-3`, `${key}-4`, ...CONTACT_STEPS, "booking"];
+  }
+  function getWizardStep(key) {
+    return wizardSteps.find((el) => el.dataset.step === key);
+  }
+  function updateWizardProgress(key) {
+    const idx = key === "scenario" ? 0 : wizardSequence.indexOf(key) + 1;
+    const pct = (idx / (TOTAL_STEPS - 1)) * 100;
+    if (wizardProgressBar) wizardProgressBar.style.width = pct + "%";
+    if (wizardStepCount) wizardStepCount.textContent = `Étape ${idx + 1} sur ${TOTAL_STEPS}`;
+  }
+  function initCalEmbed() {
+    if (calInitialized || !scenarioForm) return;
+    calInitialized = true;
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {}; cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    const formData = new FormData(scenarioForm);
+    const nom = formData.get("nom") || "";
+    const courriel = formData.get("courriel") || "";
+    const noteParts = [];
+    if (wizardScenario) noteParts.push("Scénario: " + wizardScenario);
+    for (const [k, v] of formData.entries()) {
+      if (["nom", "telephone", "courriel"].includes(k) || !v) continue;
+      noteParts.push(`${k}: ${v}`);
+    }
+
+    window.Cal("init", "kelto-hypotheques", { origin: "https://cal.com" });
+    window.Cal.ns["kelto-hypotheques"]("inline", {
+      elementOrSelector: "#calEmbed",
+      config: { layout: "month_view", name: nom, email: courriel, notes: noteParts.join(" | ") },
+      calLink: "kelto-hypotheques",
+    });
+    window.Cal.ns["kelto-hypotheques"]("ui", { styles: { branding: { brandColor: "#134e86" } }, hideEventTypeDetails: false, layout: "month_view" });
+  }
+  function showWizardStep(key) {
+    wizardSteps.forEach((el) => el.classList.remove("active"));
+    const el = getWizardStep(key);
+    if (el) el.classList.add("active");
+    const isScenario = key === "scenario";
+    const isBooking = key === "booking";
+    if (wizardNav) wizardNav.style.display = isScenario ? "none" : "flex";
+    if (wizardNext) wizardNext.style.display = isBooking ? "none" : "inline-flex";
+    if (wizardBack) wizardBack.style.display = isScenario ? "none" : "inline-flex";
+    updateWizardProgress(key);
+    if (isBooking) initCalEmbed();
+  }
+  function currentWizardStepKey() {
+    return wizardSequence.length ? wizardSequence[wizardIndex] : "scenario";
+  }
+  function goToScenario(key) {
+    wizardScenario = key;
+    wizardSequence = stepsForScenario(key);
+    wizardIndex = 0;
+    const heroScenarioEl = $("#heroScenario");
+    if (heroScenarioEl) heroScenarioEl.value = key;
+    if (wizardWidget) document.getElementById("soumission").scrollIntoView({ behavior: "smooth" });
+    showWizardStep(wizardSequence[0]);
+  }
+  function validateWizardStep(key) {
+    const el = getWizardStep(key);
+    if (!el) return true;
+    const input = $("input[required], select[required]", el);
+    if (input && !input.value) {
+      input.focus();
+      input.reportValidity && input.reportValidity();
+      return false;
+    }
+    return true;
+  }
+  if (wizardWidget) {
+    $$(".wizard-choice", wizardWidget).forEach((btn) => {
+      btn.addEventListener("click", () => goToScenario(btn.dataset.scenarioChoice));
+    });
+    if (wizardNext) {
+      wizardNext.addEventListener("click", () => {
+        const key = currentWizardStepKey();
+        if (key === "scenario" || !wizardSequence.length) return;
+        if (!validateWizardStep(key)) return;
+        if (wizardIndex < wizardSequence.length - 1) {
+          wizardIndex++;
+          showWizardStep(wizardSequence[wizardIndex]);
+          wizardWidget.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+    if (wizardBack) {
+      wizardBack.addEventListener("click", () => {
+        if (wizardIndex <= 0) {
+          showWizardStep("scenario");
+        } else {
+          wizardIndex--;
+          showWizardStep(wizardSequence[wizardIndex]);
+        }
+        wizardWidget.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+    wizardWidget.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName === "INPUT") {
+        e.preventDefault();
+        wizardNext && wizardNext.click();
+      }
+    });
+    showWizardStep("scenario");
+  }
+
+  // Deep-link from service cards straight into the matching scenario's wizard steps
   $$("[data-scenario-link]").forEach((link) => {
-    link.addEventListener("click", () => {
-      const key = link.dataset.scenarioLink;
-      activateScenario(key);
-      $("#heroScenario") && ($("#heroScenario").value = key);
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToScenario(link.dataset.scenarioLink);
     });
   });
 
-  /* ---------- Hero quick form → scrolls to & syncs scenario form ---------- */
+  /* ---------- Hero quick form → jumps straight into the matching wizard scenario ---------- */
   const heroForm = $("#heroForm");
   heroForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const scenario = $("#heroScenario").value;
-    activateScenario(scenario);
-    document.getElementById("soumission").scrollIntoView({ behavior: "smooth" });
+    const scenarioKey = $("#heroScenario").value;
+    goToScenario(scenarioKey);
     const phoneField = $('#scenarioForm input[name="telephone"]');
     if (phoneField) phoneField.value = $("#heroForm input[name='phone']").value;
-  });
-
-  /* ---------- Scenario form submit (demo — no backend) ---------- */
-  const scenarioForm = $("#scenarioForm");
-  scenarioForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    scenarioForm.hidden = true;
-    $("#formSuccess").hidden = false;
-    $("#formSuccess").scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
   /* ---------- FAQ accordion ---------- */
