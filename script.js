@@ -28,16 +28,27 @@
   /* ---------- Load image assets stored as small base64 text files ----------
      Images are kept as separate small text files under assets/img/ (instead
      of being embedded inline) so they stay reliable to store/update. This
-     fetches each one and injects it as a data: URI once loaded. ---------- */
+     fetches each one and injects it as a data: URI once loaded. Retries with
+     an increasing delay on failure before finally giving up silently. ---------- */
   const ASSETS_BASE = "https://kelto-assets.vercel.app/";
-  $$("[data-img-src]").forEach((img) => {
-    const path = img.getAttribute("data-img-src");
+  const ASSET_MAX_ATTEMPTS = 3;
+  function loadAsset(img, path, attempt = 0) {
     fetch(ASSETS_BASE + path)
-      .then((r) => r.text())
+      .then((r) => {
+        if (!r.ok) throw new Error("Asset fetch failed: " + r.status);
+        return r.text();
+      })
       .then((text) => {
         img.src = "data:image/png;base64," + text.replace(/\s+/g, "");
       })
-      .catch(() => {});
+      .catch(() => {
+        if (attempt + 1 < ASSET_MAX_ATTEMPTS) {
+          setTimeout(() => loadAsset(img, path, attempt + 1), 600 * (attempt + 1));
+        }
+      });
+  }
+  $$("[data-img-src]").forEach((img) => {
+    loadAsset(img, img.getAttribute("data-img-src"));
   });
 
   /* ---------- Mobile nav ---------- */
