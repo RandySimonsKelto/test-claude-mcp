@@ -250,6 +250,7 @@ p { margin: 0 0 1em; color: var(--text-secondary); }
 .section-head { max-width: 680px; margin: 0 auto 3rem; text-align: center; }
 .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--navy-900); }
 .section-sub { font-size: 1.05rem; }
+.section-sub a { color: var(--brand); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 
 /* ============ Services ============ */
 #services { position: relative; overflow: hidden; }
