@@ -44,23 +44,25 @@
      an increasing delay on failure before finally giving up silently. ---------- */
   const ASSETS_BASE = "https://kelto-assets.vercel.app/";
   const ASSET_MAX_ATTEMPTS = 3;
-  function loadAsset(img, path, attempt = 0) {
-    fetch(ASSETS_BASE + path)
+  function loadAsset(img, path, attempt = 0, base = ASSETS_BASE, mime = "image/png") {
+    fetch(base + path)
       .then((r) => {
         if (!r.ok) throw new Error("Asset fetch failed: " + r.status);
         return r.text();
       })
       .then((text) => {
-        img.src = "data:image/png;base64," + text.replace(/\s+/g, "");
+        img.src = "data:" + mime + ";base64," + text.replace(/\s+/g, "");
       })
       .catch(() => {
         if (attempt + 1 < ASSET_MAX_ATTEMPTS) {
-          setTimeout(() => loadAsset(img, path, attempt + 1), 600 * (attempt + 1));
+          setTimeout(() => loadAsset(img, path, attempt + 1, base, mime), 600 * (attempt + 1));
         }
       });
   }
   $$("[data-img-src]").forEach((img) => {
-    loadAsset(img, img.getAttribute("data-img-src"));
+    const base = img.getAttribute("data-img-base") || ASSETS_BASE;
+    const mime = img.getAttribute("data-img-mime") || "image/png";
+    loadAsset(img, img.getAttribute("data-img-src"), 0, base, mime);
   });
 
   /* ---------- Mobile nav ---------- */
