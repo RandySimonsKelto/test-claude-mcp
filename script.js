@@ -41,7 +41,12 @@
      Images are kept as separate small text files under assets/img/ (instead
      of being embedded inline) so they stay reliable to store/update. This
      fetches each one and injects it as a data: URI once loaded. Retries with
-     an increasing delay on failure before finally giving up silently. ---------- */
+     an increasing delay on failure before finally giving up silently.
+
+     Larger images (photos) are split across several small chunk files named
+     "<base>-00.txt", "<base>-01.txt", etc. — set data-img-chunks="N" on the
+     element (N = number of chunk files) and data-img-src to the shared name
+     prefix (without the "-NN.txt" suffix) to use this mode. ---------- */
   const ASSETS_BASE = "https://kelto-assets.vercel.app/";
   const ASSET_MAX_ATTEMPTS = 3;
   function loadAsset(img, path, attempt = 0, base = ASSETS_BASE, mime = "image/png") {
@@ -59,10 +64,34 @@
         }
       });
   }
+  function loadChunkedAsset(img, basePath, chunkCount, attempt = 0, base = ASSETS_BASE, mime = "image/jpeg") {
+    const indices = Array.from({ length: chunkCount }, (_, i) => String(i).padStart(2, "0"));
+    Promise.all(
+      indices.map((n) =>
+        fetch(base + basePath + "-" + n + ".txt").then((r) => {
+          if (!r.ok) throw new Error("Chunk fetch failed: " + r.status);
+          return r.text();
+        })
+      )
+    )
+      .then((parts) => {
+        img.src = "data:" + mime + ";base64," + parts.join("").replace(/\s+/g, "");
+      })
+      .catch(() => {
+        if (attempt + 1 < ASSET_MAX_ATTEMPTS) {
+          setTimeout(() => loadChunkedAsset(img, basePath, chunkCount, attempt + 1, base, mime), 600 * (attempt + 1));
+        }
+      });
+  }
   $$("[data-img-src]").forEach((img) => {
     const base = img.getAttribute("data-img-base") || ASSETS_BASE;
     const mime = img.getAttribute("data-img-mime") || "image/png";
-    loadAsset(img, img.getAttribute("data-img-src"), 0, base, mime);
+    const chunks = parseInt(img.getAttribute("data-img-chunks") || "0", 10);
+    if (chunks > 0) {
+      loadChunkedAsset(img, img.getAttribute("data-img-src"), chunks, 0, base, mime);
+    } else {
+      loadAsset(img, img.getAttribute("data-img-src"), 0, base, mime);
+    }
   });
 
   /* ---------- Mobile nav ---------- */
