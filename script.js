@@ -126,6 +126,33 @@
     revealItems.forEach((el) => el.classList.add("in-view"));
   }
 
+  /* ---------- Subtle scroll parallax on background photos ---------- */
+  const parallaxEls = $$("[data-parallax]");
+  if (parallaxEls.length && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    let parallaxTicking = false;
+    const updateParallax = () => {
+      const vh = window.innerHeight;
+      parallaxEls.forEach((el) => {
+        const parent = el.parentElement;
+        if (!parent) return;
+        const rect = parent.getBoundingClientRect();
+        const progressRaw = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const progress = Math.max(-1, Math.min(1, progressRaw));
+        el.style.transform = `translateY(${(progress * 18).toFixed(1)}px) scale(1.1)`;
+      });
+      parallaxTicking = false;
+    };
+    const onParallaxScroll = () => {
+      if (!parallaxTicking) {
+        parallaxTicking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    };
+    window.addEventListener("scroll", onParallaxScroll, { passive: true });
+    window.addEventListener("resize", onParallaxScroll);
+    updateParallax();
+  }
+
   /* ---------- Scroll-spy active nav link ---------- */
   const navLinks = $$(".main-nav a[href^='#']");
   const spySections = navLinks
