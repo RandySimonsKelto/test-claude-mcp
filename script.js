@@ -153,6 +153,38 @@
     updateParallax();
   }
 
+  /* ---------- Progressive scroll blur on background visuals ----------
+     Elements marked data-blur-scroll (hero background + constellation
+     canvas, plus the section background photos) drift softly out of
+     focus the moment the page scrolls, using the same viewport-center
+     distance metric as the parallax effect above. Respects
+     prefers-reduced-motion by simply not running. ---------- */
+  const blurEls = $$("[data-blur-scroll]");
+  if (blurEls.length && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    let blurTicking = false;
+    const updateBlur = () => {
+      const vh = window.innerHeight;
+      blurEls.forEach((el) => {
+        const target = el.parentElement || el;
+        const rect = target.getBoundingClientRect();
+        const progressRaw = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const progress = Math.min(1, Math.abs(progressRaw) * 1.4);
+        const maxBlur = parseFloat(el.getAttribute("data-blur-max")) || 6;
+        el.style.filter = `blur(${(progress * maxBlur).toFixed(2)}px)`;
+      });
+      blurTicking = false;
+    };
+    const onBlurScroll = () => {
+      if (!blurTicking) {
+        blurTicking = true;
+        requestAnimationFrame(updateBlur);
+      }
+    };
+    window.addEventListener("scroll", onBlurScroll, { passive: true });
+    window.addEventListener("resize", onBlurScroll);
+    updateBlur();
+  }
+
   /* ---------- Scroll-spy active nav link ---------- */
   const navLinks = $$(".main-nav a[href^='#']");
   const spySections = navLinks
