@@ -208,7 +208,7 @@
   const counters = $$(".stat-number");
   const animateCounter = (el) => {
     const target = parseInt(el.dataset.count, 10);
-    const duration = 1400;
+    const duration = 2200;
     const start = performance.now();
     const tick = (now) => {
       const progress = Math.min((now - start) / duration, 1);
@@ -634,7 +634,7 @@
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        let brightness = 0.78;
+        let brightness = 0.92;
         if (mouse.active) {
           const dx = p.x - mouse.x, dy = p.y - mouse.y;
           const dist = Math.hypot(dx, dy);
@@ -642,7 +642,7 @@
             const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
             p.x += (dx / dist) * force * 2.2;
             p.y += (dy / dist) * force * 2.2;
-            brightness = 0.78 + force * 0.4;
+            brightness = 0.92 + force * 0.3;
           }
         }
 
@@ -660,7 +660,7 @@
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(30, 172, 218, ${0.27 * (1 - dist / MAX_LINK_DIST)})`;
+            ctx.strokeStyle = `rgba(30, 172, 218, ${0.38 * (1 - dist / MAX_LINK_DIST)})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
