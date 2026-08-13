@@ -705,4 +705,19 @@
       else if (hero.getBoundingClientRect().top < window.innerHeight) start();
     });
   })();
+
+  /* ---------- VSL video (YouTube facade, click-to-load) ---------- */
+  const vslFacade = $("#ctaVslFacade");
+  if (vslFacade) {
+    vslFacade.addEventListener("click", () => {
+      const id = vslFacade.getAttribute("data-yt-id");
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = "Vidéo Kelto";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      vslFacade.replaceWith(iframe);
+    }, { once: true });
+  }
 })();
