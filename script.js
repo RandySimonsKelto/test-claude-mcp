@@ -597,8 +597,8 @@
     const mouse = { x: null, y: null, active: false };
     let running = false, rafId = null;
 
-    const PARTICLE_COUNT = 55;
-    const MAX_LINK_DIST = 130;
+    const PARTICLE_COUNT = 95;
+    const MAX_LINK_DIST = 155;
     const MOUSE_RADIUS = 220;
 
     function resize() {
