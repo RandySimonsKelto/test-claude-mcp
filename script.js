@@ -419,6 +419,31 @@
   const wizardNav = wizardWidget ? $(".wizard-nav", wizardWidget) : null;
   const wizardSteps = wizardWidget ? $$(".wizard-step", wizardWidget) : [];
   const CONTACT_STEPS = ["contact-nom", "contact-telephone", "contact-courriel"];
+
+  /* ---------- Pont vers Velocity: webhooks Zapier + message post-réservation ---------- */
+  const BRIDGE_WEBHOOK_FORM_COMPLETE = "https://hooks.zapier.com/hooks/catch/7773571/4t4kzmg/";
+  const BRIDGE_WEBHOOK_BOOKING_CONFIRMED = "https://hooks.zapier.com/hooks/catch/7773571/4t4fh2r/";
+  function sendBridgeWebhook(url, data) {
+    try {
+      const params = new URLSearchParams(data);
+      fetch(url, { method: "POST", mode: "no-cors", body: params }).catch(() => {});
+    } catch (e) {
+      /* fire-and-forget: never block the UI on a webhook failure */
+    }
+  }
+  function showPostBookingMessage() {
+    const calEmbedEl = $("#calEmbed");
+    const msgEl = $("#postBookingMessage");
+    if (calEmbedEl) calEmbedEl.hidden = true;
+    if (msgEl) msgEl.hidden = false;
+  }
+  const postBookingDismiss = $("#postBookingDismiss");
+  if (postBookingDismiss) {
+    postBookingDismiss.addEventListener("click", () => {
+      const msgEl = $("#postBookingMessage");
+      if (msgEl) msgEl.hidden = true;
+    });
+  }
   const TOTAL_STEPS = 4 + CONTACT_STEPS.length + 1 + 1; // 4 champs scénario + 3 coordonnées + 1 réservation + 1 étape de choix du projet
   let wizardScenario = null;
   let wizardSequence = [];
@@ -468,12 +493,18 @@
     const formData = new FormData(scenarioForm);
     const nom = formData.get("nom") || "";
     const courriel = formData.get("courriel") || "";
+    const telephone = formData.get("telephone") || "";
     const noteParts = [];
     if (wizardScenario) noteParts.push("Scénario: " + wizardScenario);
     for (const [k, v] of formData.entries()) {
       if (["nom", "telephone", "courriel"].includes(k) || !v) continue;
       noteParts.push(`${k}: ${v}`);
     }
+    const bridgeLeadData = { nom, telephone, courriel, scenario: wizardScenario || "", notes: noteParts.join(" | ") };
+
+    // Le formulaire vient d'être complété (le lead atteint l'étape de réservation) —
+    // on avertit Zapier/GoHighLevel pour déclencher le courriel d'invitation.
+    sendBridgeWebhook(BRIDGE_WEBHOOK_FORM_COMPLETE, bridgeLeadData);
 
     window.Cal("init", "kelto-hypotheques", { origin: "https://app.cal.com" });
     window.Cal.ns["kelto-hypotheques"]("inline", {
@@ -482,6 +513,15 @@
       calLink: "kelto-hypotheques/15min",
     });
     window.Cal.ns["kelto-hypotheques"]("ui", { styles: { branding: { brandColor: "#134e86" } }, hideEventTypeDetails: false, layout: "month_view" });
+    window.Cal.ns["kelto-hypotheques"]("on", {
+      action: "bookingSuccessful",
+      callback: () => {
+        // Le rendez-vous vient d'être confirmé — on avertit Zapier/GoHighLevel pour
+        // déclencher le second courriel, et on affiche le message de conversion sur place.
+        sendBridgeWebhook(BRIDGE_WEBHOOK_BOOKING_CONFIRMED, bridgeLeadData);
+        showPostBookingMessage();
+      },
+    });
   }
   function showWizardStep(key) {
     wizardSteps.forEach((el) => el.classList.remove("active"));
