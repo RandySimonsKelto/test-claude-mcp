@@ -444,23 +444,89 @@
       if (msgEl) msgEl.hidden = true;
     });
   }
-  const TOTAL_STEPS = 4 + CONTACT_STEPS.length + 1 + 1; // 4 champs scénario + 3 coordonnées + 1 réservation + 1 étape de choix du projet
   let wizardScenario = null;
   let wizardSequence = [];
   let wizardIndex = 0;
   let calInitialized = false;
 
+  // Étapes additionnelles par scénario (au-delà des 4 champs de base) — permet un nombre
+  // d'étapes variable selon le scénario (ex. cote de crédit ajoutée partout, délai et
+  // valeur estimée ajoutés seulement à certains scénarios).
+  const SCENARIO_EXTRA_STEPS = {
+    new: ["new-5", "new-6"],
+    renewal: ["renewal-5", "renewal-6"],
+    refinance: ["refinance-5"],
+    private: ["private-5"],
+    alternative: ["alternative-5"],
+    commercial: ["commercial-5"],
+  };
   function stepsForScenario(key) {
-    return [`${key}-1`, `${key}-2`, `${key}-3`, `${key}-4`, ...CONTACT_STEPS, "booking"];
+    const extra = SCENARIO_EXTRA_STEPS[key] || [];
+    return [`${key}-1`, `${key}-2`, `${key}-3`, `${key}-4`, ...extra, ...CONTACT_STEPS, "booking"];
   }
   function getWizardStep(key) {
     return wizardSteps.find((el) => el.dataset.step === key);
   }
   function updateWizardProgress(key) {
+    // Le nombre total d'étapes varie maintenant selon le scénario choisi (voir
+    // SCENARIO_EXTRA_STEPS) ; on le calcule donc dynamiquement plutôt que d'utiliser
+    // une constante fixe. 10 est une valeur d'affichage raisonnable avant que le
+    // scénario ne soit choisi (wizardSequence encore vide).
+    const totalSteps = wizardSequence.length ? wizardSequence.length + 1 : 10;
     const idx = key === "scenario" ? 0 : wizardSequence.indexOf(key) + 1;
-    const pct = (idx / (TOTAL_STEPS - 1)) * 100;
+    const pct = (idx / (totalSteps - 1)) * 100;
     if (wizardProgressBar) wizardProgressBar.style.width = pct + "%";
-    if (wizardStepCount) wizardStepCount.textContent = `Étape ${idx + 1} sur ${TOTAL_STEPS}`;
+    if (wizardStepCount) wizardStepCount.textContent = `Étape ${idx + 1} sur ${totalSteps}`;
+  }
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[c]));
+  }
+  // Lit directement dans le DOM les questions (texte du <label>) et réponses
+  // (valeur du champ) des étapes réellement parcourues par le lead, dans l'ordre.
+  // Source unique de vérité : aucune liste de champs à maintenir séparément en JS —
+  // tout nouveau champ ajouté au HTML du wizard apparaît automatiquement ici.
+  function collectStepAnswers() {
+    const answers = [];
+    const steps = wizardSequence.filter((s) => s !== "booking");
+    for (const step of steps) {
+      const stepEl = getWizardStep(step);
+      if (!stepEl) continue;
+      const labelEl = $("label", stepEl);
+      if (!labelEl) continue;
+      const fieldEl = $("input, select, textarea", labelEl);
+      if (!fieldEl || !fieldEl.value) continue;
+      let question = "";
+      for (const node of labelEl.childNodes) {
+        if (node === fieldEl) break;
+        if (node.nodeType === Node.TEXT_NODE) question += node.textContent;
+      }
+      question = question.trim();
+      let answer = fieldEl.value;
+      if (fieldEl.tagName === "SELECT") {
+        const opt = fieldEl.options[fieldEl.selectedIndex];
+        answer = (opt && opt.textContent) || fieldEl.value;
+      }
+      answer = String(answer).trim();
+      if (!question || !answer) continue;
+      answers.push({ question, answer });
+    }
+    return answers;
+  }
+  function buildDetailsHtmlTable(answers) {
+    if (!answers.length) return "";
+    const rows = answers
+      .map(
+        (a) =>
+          `<tr><td style="padding:6px 12px;border:1px solid #ddd;background:#f5f5f5;font-weight:bold;">${escapeHtml(a.question)}</td><td style="padding:6px 12px;border:1px solid #ddd;">${escapeHtml(a.answer)}</td></tr>`
+      )
+      .join("");
+    return `<table style="border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:14px;">${rows}</table>`;
   }
   function initCalEmbed() {
     if (calInitialized || !scenarioForm) return;
@@ -494,13 +560,21 @@
     const nom = formData.get("nom") || "";
     const courriel = formData.get("courriel") || "";
     const telephone = formData.get("telephone") || "";
+    // Important : on construit les notes à partir de collectStepAnswers() (qui ne lit que
+    // les étapes du scénario réellement choisi), et non depuis new FormData(scenarioForm)
+    // directement — le formulaire contient TOUJOURS les champs des 6 scénarios en même
+    // temps dans le DOM (seuls les non-actifs sont masqués visuellement), donc un FormData
+    // brut renverrait aussi les valeurs par défaut des <select> des scénarios non choisis.
+    const answers = collectStepAnswers();
     const noteParts = [];
     if (wizardScenario) noteParts.push("Scénario: " + wizardScenario);
-    for (const [k, v] of formData.entries()) {
-      if (["nom", "telephone", "courriel"].includes(k) || !v) continue;
-      noteParts.push(`${k}: ${v}`);
+    const CONTACT_QUESTIONS = ["Nom complet", "Téléphone", "Courriel"];
+    for (const a of answers) {
+      if (CONTACT_QUESTIONS.includes(a.question)) continue;
+      noteParts.push(`${a.question}: ${a.answer}`);
     }
-    const bridgeLeadData = { nom, telephone, courriel, scenario: wizardScenario || "", notes: noteParts.join(" | ") };
+    const detailsHtml = buildDetailsHtmlTable(answers);
+    const bridgeLeadData = { nom, telephone, courriel, scenario: wizardScenario || "", notes: noteParts.join(" | "), detailsHtml };
 
     // Le formulaire vient d'être complété (le lead atteint l'étape de réservation) —
     // on avertit Zapier/GoHighLevel pour déclencher le courriel d'invitation.
