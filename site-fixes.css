@@ -1,4 +1,4 @@
-/* Kelto — correctifs et styles de la section Articles */
+/* Kelto : correctifs et styles de la section Articles */
 
 /* Correctif : le pied de page est concu pour un fond fonce (texte blanc).
    Sur la page d'accueil il repose sur la bande .commercial-band ; ailleurs
@@ -57,3 +57,11 @@
 
 @media(max-width:980px){.articles-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.articles-grid{grid-template-columns:1fr}.article-head{padding:48px 0 32px}}
+
+/* Correctif : avec l'onglet Articles, le menu manquait de place et le logo
+   du haut etait comprime horizontalement. Le logo ne retrecit plus jamais ;
+   c'est l'espacement du menu qui s'ajuste a la largeur disponible. */
+.site-header .logo,.site-header .logo img{flex-shrink:0}
+.site-header .logo img{max-width:none}
+@media (min-width:1081px){.main-nav ul{gap:clamp(.85rem,2.4vw - 1.3rem,1.5rem)}}
+@media (min-width:1081px) and (max-width:1199px){.site-header .phone-link span{display:none}}
