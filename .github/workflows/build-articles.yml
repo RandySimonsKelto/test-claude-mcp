@@ -1,0 +1,49 @@
+name: Construire les articles
+
+# Se declenche des qu'un article brut arrive dans articles/ sur main
+# (typiquement quand une pull request de duqky-agent est fusionnee),
+# ou manuellement depuis l'onglet Actions.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'articles/**'
+      - 'build_articles.py'
+      - 'patch_pages.py'
+      - '.github/workflows/build-articles.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-articles
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Construire les pages d'articles, l'index et le sitemap
+        run: python3 build_articles.py
+
+      - name: Ajouter l'onglet Articles aux pages existantes
+        run: python3 patch_pages.py
+
+      - name: Publier les changements
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Rien a publier."
+            exit 0
+          fi
+          git config user.name  "kelto-build"
+          git config user.email "build@kelto.ca"
+          git add -A
+          git commit -m "Construction automatique des articles [skip ci]"
+          git push
