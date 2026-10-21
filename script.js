@@ -576,6 +576,25 @@
     const detailsHtml = buildDetailsHtmlTable(answers);
     const bridgeLeadData = { nom, telephone, courriel, scenario: wizardScenario || "", notes: noteParts.join(" | "), detailsHtml };
 
+    // Pixel Meta de Kelto (kelto-meta-pixel.js) : l'événement « Lead » n'est envoyé que si le visiteur a
+    // accepté les témoins. Dans tous les cas, on transmet au CRM le statut du consentement et, s'il est
+    // accordé, l'identifiant de déduplication + fbp/fbc pour que le relais serveur envoie le même événement.
+    // Aucun renseignement financier n'est envoyé à Meta : seulement le nom de l'événement.
+    const metaEventIds = {};
+    const metaFields = (eventKey) => {
+      const km = window.keltoMeta;
+      if (!km) return {};
+      const ids = km.ids();
+      const f = { meta_consent: ids.consent };
+      if (eventKey) f[eventKey] = metaEventIds[eventKey] || "";
+      if (ids.consent === "granted") {
+        f.meta_fbp = ids.fbp; f.meta_fbc = ids.fbc; f.meta_page_url = ids.page_url; f.meta_user_agent = ids.user_agent;
+      }
+      return f;
+    };
+    if (window.keltoMeta) metaEventIds.meta_event_id = window.keltoMeta.track("Lead");
+    Object.assign(bridgeLeadData, metaFields("meta_event_id"));
+
     // Le formulaire vient d'être complété (le lead atteint l'étape de réservation) —
     // on avertit Zapier/GoHighLevel pour déclencher le courriel d'invitation.
     sendBridgeWebhook(BRIDGE_WEBHOOK_FORM_COMPLETE, bridgeLeadData);
@@ -592,7 +611,8 @@
       callback: () => {
         // Le rendez-vous vient d'être confirmé — on avertit Zapier/GoHighLevel pour
         // déclencher le second courriel, et on affiche le message de conversion sur place.
-        sendBridgeWebhook(BRIDGE_WEBHOOK_BOOKING_CONFIRMED, bridgeLeadData);
+        if (window.keltoMeta) metaEventIds.meta_schedule_event_id = window.keltoMeta.track("Schedule");
+        sendBridgeWebhook(BRIDGE_WEBHOOK_BOOKING_CONFIRMED, Object.assign({}, bridgeLeadData, metaFields("meta_schedule_event_id")));
         showPostBookingMessage();
       },
     });

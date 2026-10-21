@@ -64,9 +64,67 @@ def patch(name):
     return True
 
 
+# --- Pixel Meta de Kelto avec consentement prealable (Loi 25) -------------------
+# Le jeu de donnees appartient au portefeuille Meta de Kelto (pas a une agence).
+META_PIXEL_ID = "973439061907168"
+META_DOMAIN_VERIFICATION = "b0hnjixad68dpp26fp97ztdancffo8"   # kelto.ca, portefeuille Kelto Hypotheques
+META_LOADER = "kelto-meta-pixel.js"
+META_LINKS = ('<li><a href="%sconfidentialite.html">Politique de confidentialité</a></li>'
+              '<li><a href="#" data-kelto-consent-open>Gérer mes témoins</a></li>')
+
+
+def meta_pages():
+    """Pages statiques + pages d'articles (construites par build_articles.py)."""
+    pages = list(PAGES) + ["articles.html", "confidentialite.html"]
+    art = os.path.join(ROOT, "articles")
+    if os.path.isdir(art):
+        pages += ["articles/" + f for f in sorted(os.listdir(art)) if f.endswith(".html")]
+    return pages
+
+
+def patch_meta(name):
+    """Ajoute (1) le chargeur du pixel avant script.js, (2) les liens Confidentialite /
+    Gerer mes temoins dans la colonne Ressources du pied de page, (3) la balise de
+    verification du domaine sur la page d'accueil. Idempotent."""
+    path = os.path.join(ROOT, name)
+    if not os.path.exists(path):
+        return False
+    up = "../" if "/" in name else ""
+    src = open(path, encoding="utf-8").read()
+    out = src
+
+    if META_LOADER not in out:
+        old = '<script src="%sscript.js"></script>' % up
+        if old not in out:
+            print("  ! %s : balise script.js introuvable (pixel non ajoute)" % name)
+            return False
+        cfg = ('<script>window.KELTO_META={pixelId:"%s",privacyUrl:"%sconfidentialite.html",siteName:"Kelto"};</script>'
+               '<script src="%s%s"></script>') % (META_PIXEL_ID, up, up, META_LOADER)
+        out = out.replace(old, cfg + old, 1)
+
+    i = out.find(FTR_OLD)
+    if i >= 0:
+        j = out.find("</ul>", i)
+        if j >= 0 and "confidentialite.html" not in out[i:j]:
+            out = out[:j] + META_LINKS % up + out[j:]
+
+    if name == "index.html" and "facebook-domain-verification" not in out:
+        out = out.replace('<meta charset="UTF-8">',
+                          '<meta charset="UTF-8"><meta name="facebook-domain-verification" content="%s">'
+                          % META_DOMAIN_VERIFICATION, 1)
+
+    if out == src:
+        return False
+    open(path, "w", encoding="utf-8").write(out)
+    print("  + %s : pixel Meta / confidentialite (+%d octets)" % (name, len(out) - len(src)))
+    return True
+
+
 def main():
     n = sum(1 for name in PAGES if patch(name))
     print("Pages existantes mises a jour : %d" % n)
+    m = sum(1 for name in meta_pages() if patch_meta(name))
+    print("Pages mises a jour (pixel Meta avec consentement) : %d" % m)
 
 
 if __name__ == "__main__":
