@@ -1,0 +1,70 @@
+/* ==========================================================================
+   KELTO, interactions au survol (v4), partagé par les 3 pages
+   - Cartes : soulèvement, bordure bleue, halo qui suit la souris (--mx/--my via kelto-fx.js)
+   - Icônes : petit rebond, passent au cyan
+   - Photos : léger zoom dans leur cadre
+   - Boutons : reflet qui traverse, flèche qui avance
+   Tout est coupé si l'utilisateur préfère réduire les animations.
+   ========================================================================== */
+.card,.tile,.rung,.review,.fit-box,.step,.note,.js .rv.in.card,.js .rv.in.tile,.js .rv.in.rung,.js .rv.in.review,.js .rv.in.fit-box,.js .rv.in.step,.js .rv.in.note,.proof-item{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .25s,background .25s,opacity .6s ease}
+.card,.tile,.rung,.review{position:relative;isolation:isolate;overflow:hidden}
+.card::before,.tile::before,.rung::before,.review::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(31,173,219,.14),transparent 65%)}
+.step::before,.note::before{transition:background .25s,transform .25s}
+.opt .arr,.opt .oi,.btn svg{transition:transform .25s,background .2s,color .2s}
+
+@media(hover:hover){
+  .card:hover,.tile:hover,.rung:hover,.review:hover,.js .rv.in.card:hover,.js .rv.in.tile:hover,.js .rv.in.rung:hover,.js .rv.in.review:hover{transform:translateY(-6px);box-shadow:0 22px 40px -18px rgba(19,78,134,.35);border-color:var(--brand)}
+  .card:hover::before,.tile:hover::before,.rung:hover::before,.review:hover::before{opacity:1}
+  .card:hover .ci,.tile:hover .ci{background:var(--cyan);animation:k-pop .45s ease}
+  .card:hover h3,.tile:hover{color:var(--brand)}
+  .rung:hover .cost i.f{animation:k-dot .5s ease both}
+  .rung:hover .cost i.f:nth-child(2){animation-delay:.08s}
+  .rung:hover .cost i.f:nth-child(3){animation-delay:.16s}
+  .fit-box:hover,.js .rv.in.fit-box:hover{transform:translateX(6px)}
+  .step:hover{background:linear-gradient(90deg,rgba(19,78,134,.07),transparent 70%)}
+  .step:hover::before{background:var(--cyan);transform:scale(1.08)}
+  .note:hover::before{background:var(--cyan)}
+  .proof-item:hover{background:rgba(255,255,255,.07)}
+
+  /* Photos : zoom à l'intérieur du cadre, la carte flottante remonte un peu */
+  .frame,.co-media{overflow:hidden;border-radius:var(--r-card)}
+  .frame img,.co-media img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .frame:hover img,.co-media:hover img{transform:scale(1.045)}
+  .media:hover img{box-shadow:0 22px 40px -18px rgba(19,78,134,.35)}
+  .float-chip,.ba{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .frame:hover .float-chip,.media:hover .float-chip,.co-media:hover .ba{transform:translateY(-4px)}
+
+  .opt:hover .arr{transform:translateX(4px);color:var(--brand)}
+  .opt:hover .oi{background:var(--brand);color:#fff}
+  .btn:hover svg{transform:translateX(3px)}
+  .bq-item img{transition:transform .25s}
+  .bq-item:hover img{transform:scale(1.12)}
+  .faq summary:hover{color:var(--brand)}
+  .faq summary:hover::after{border-color:var(--brand);background-color:var(--brand-50)}
+}
+@keyframes k-pop{0%{transform:scale(1)}40%{transform:scale(1.18) rotate(-6deg)}100%{transform:scale(1)}}
+@keyframes k-dot{0%{transform:scale(1)}50%{transform:scale(1.6)}100%{transform:scale(1)}}
+
+/* Reflet qui traverse les boutons pleins */
+.btn-primary,.btn-white{position:relative;overflow:hidden}
+.btn-primary::after,.btn-white::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);transition:left .6s ease}
+.btn-white::after{background:linear-gradient(100deg,transparent,rgba(31,173,219,.25),transparent)}
+@media(hover:hover){.btn-primary:hover::after,.btn-white:hover::after{left:120%}}
+
+/* Lettre annotée : survoler une note allume l'épingle et la ligne correspondantes */
+.l-row,.stamp,.pin{transition:background .25s,box-shadow .25s}
+.l-row.hot{background:var(--brand-50);box-shadow:inset 3px 0 0 var(--brand)}
+.pin.hot{background:var(--cyan);box-shadow:0 0 0 4px #fff,0 0 0 10px rgba(31,173,219,.3)}
+.note{border-radius:10px;padding:8px;margin:-8px}
+.note.hot{background:var(--brand-50)}
+
+/* FAQ : ouverture en douceur */
+.faq details[open] .a{animation:k-faq .35s ease}
+@keyframes k-faq{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .card,.tile,.rung,.review,.fit-box,.step,.frame img,.media img,.co-media img,.btn svg,.float-chip,.ba{transition:none!important;animation:none!important;transform:none!important}
+  .btn-primary::after,.btn-white::after{display:none}
+}

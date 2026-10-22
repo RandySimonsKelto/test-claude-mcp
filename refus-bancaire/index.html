@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refusé par la banque? Prêteurs B et privés | Kelto</title>
+<meta name="description" content="Travailleur autonome, crédit abîmé, dettes à regrouper : la banque a dit non? Kelto présente votre dossier à plus de 30 prêteurs, dont des prêteurs alternatifs (B) et privés.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="La banque a dit non. Votre dossier n'est pas fini. | Kelto">
+<meta property="og:description" content="Prêteurs alternatifs (B) et privés, avec un plan pour revenir vers la banque.">
+<meta property="og:image" content="/lp/photos/bp-hero.jpg">
+<meta property="og:locale" content="fr_CA">
+<link rel="icon" href="/lp/logos/logo-kelto-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lp/assets/kelto.css?v=7">
+<link rel="stylesheet" href="/lp/assets/kelto-fx.css?v=3">
+
+<!-- Meta Pixel Kelto -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1472806754667454');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1472806754667454&ev=PageView&noscript=1"></noscript>
+
+<style>
+/* ---------- Propre à cette page : l'échelle des prêteurs ---------- */
+.ladder{display:grid;gap:14px;position:relative}
+.rung{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:26px 24px;position:relative}
+.rung .lvl{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.rung .code{display:inline-grid;place-items:center;min-width:44px;height:44px;padding:0 10px;border-radius:11px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.rung .cost{font-size:12.5px;font-weight:600;color:var(--muted)}
+.rung .cost i{display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--border);margin-left:3px}
+.rung .cost i.f{background:var(--brand)}
+.rung h3{font-size:20px;margin-bottom:6px}
+.rung p{font-size:15px}
+.rung dl{margin:16px 0 0;display:grid;gap:10px;border-top:1px solid var(--border);padding-top:14px}
+.rung dt{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.rung dd{margin:2px 0 0;font-size:14.5px;color:var(--ink)}
+.r-a .code{background:var(--brand);color:#fff}
+.r-b .code{background:var(--brand-50);color:var(--brand)}
+.r-p .code{background:var(--surface);color:var(--ink);font-size:14px}
+.ladder-path{display:flex;align-items:center;gap:12px;margin-top:22px;padding:16px 18px;border-radius:var(--r-card);background:var(--cyan-50);color:var(--ink);font-size:15px;font-weight:500}
+.ladder-path svg{flex:none;width:22px;height:22px;color:var(--brand)}
+@media(min-width:900px){
+  /* L'échelle monte vers la droite : privé en bas, banque en haut */
+  .ladder{grid-template-columns:repeat(3,1fr);align-items:start;gap:18px}
+  .r-p{margin-top:120px}.r-b{margin-top:60px}
+  .rung::after{content:"";position:absolute;top:34px;right:-18px;width:18px;border-top:2px dashed var(--cyan)}
+  .r-a::after{display:none}
+}
+.sit{display:grid;gap:14px}
+@media(min-width:700px){.sit{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.sit{grid-template-columns:repeat(3,1fr)}}
+.sit .card{padding:24px}
+.sit .card h3{font-size:18px}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="Kelto, accueil"><img src="/lp/logos/logo-kelto-mark.png" alt="Kelto" width="120" height="34"></a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:+15146606655">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        514 660-6655
+      </a>
+      <a class="btn btn-primary" href="#quiz" data-go-quiz>Voir mes options</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-text">
+        <span class="eyebrow">
+          <span class="g"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.1V7H2a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.4 9.1 5.4 12 5.4z"/></svg></span>
+          <span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+          85 avis Google, tous à 5 étoiles
+        </span>
+        <h1 data-h1>La banque a dit non. Votre dossier, lui, n'est pas fini.</h1>
+        <p class="lead" data-lead>Les banques suivent une grille. Nos prêteurs alternatifs (B) et privés regardent votre maison et votre situation réelle.</p>
+        <ul class="checks">
+          <li>Travailleurs autonomes, crédit abîmé, dettes à regrouper</li>
+          <li>Aucune vérification de crédit sans votre accord</li>
+          <li>Un plan pour revenir vers la banque, dès le premier appel</li>
+        </ul>
+      </div>
+
+      <div class="hero-media">
+        <figure class="media">
+          <img src="/lp/photos/bp-hero.jpg" alt="Un entrepreneur en rénovation consulte son téléphone dans son camion, son dossier sur le volant" width="1536" height="1024" fetchpriority="high">
+          <figcaption class="float-chip">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+            <span><b>Banque : refusé. Prêteur B : à l'étude.</b><span>Un refus n'est qu'un prêteur sur plus de 30.</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="hero-quiz">
+      <div class="quiz" id="quiz" aria-live="polite"><!-- rempli par kelto-quiz.js --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDEAU DES PRÊTEURS (scroll-stopper de preuve) ============ -->
+<!-- À FAIRE : faire confirmer la liste par Kelto (retirer tout prêteur avec qui ils ne font pas affaire) -->
+<section class="sec-banques" aria-label="Prêteurs partenaires">
+  <p class="bq-title">Banques, prêteurs alternatifs et privés, dont</p>
+  <div class="bq-marquee">
+    <div class="bq-track">
+        <div class="bq-item"><img src="/lp/logos/banques/desjardins.png" alt="Desjardins" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/nationale.png" alt="Banque Nationale" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/td.png" alt="TD" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/rbc.png" alt="RBC" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/bmo.png" alt="BMO" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/scotia.png" alt="Banque Scotia" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/first-national.png" alt="First National" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/mcap.png" alt="MCAP" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/merix.png" alt="Merix" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/cmls.png" alt="CMLS" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/manulife.png" alt="Manuvie" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/equitable.png" alt="Equitable Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/home-trust.png" alt="Home Trust" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/haventree.png" alt="Haventree Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/b2b.jpg" alt="B2B Banque" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/desjardins.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/nationale.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/td.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/rbc.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/bmo.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/scotia.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/first-national.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/mcap.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/merix.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/cmls.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/manulife.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/equitable.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/home-trust.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/haventree.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/b2b.jpg" alt="" aria-hidden="true" width="140" height="40"></div>
+    </div>
+  </div>
+  <p class="bq-note">Quand une banque dit non, on présente le dossier aux autres.</p>
+</section>
+
+<!-- ============ BANDE DE PREUVES ============ -->
+<section class="proof" aria-label="Kelto en chiffres">
+  <div class="wrap">
+    <div class="proof-item"><b>30+</b><span>prêteurs : banques, B et privés</span></div>
+    <div class="proof-item"><b>3 500+</b><span>clients accompagnés</span></div>
+    <div class="proof-item"><b>5,0</b><span>sur 85 avis Google</span></div>
+    <div class="proof-item"><b>&lt; 24 h</b><span>pour une première réponse</span></div>
+  </div>
+</section>
+
+<!-- ============ L'ÉCHELLE DES PRÊTEURS (élément signature de la page) ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Comment ça fonctionne vraiment</span>
+      <h2>Il existe trois étages de prêteurs. La banque n'en est qu'un.</h2>
+    </div>
+
+    <div class="ladder">
+      <article class="rung r-p rv">
+        <div class="lvl"><span class="code">Privé</span><span class="cost">Coût <i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+        <h3>Prêteurs privés</h3>
+        <p>Ils prêtent surtout sur l'équité de la maison.</p>
+        <dl>
+          <div><dt>Pour qui</dt><dd>Crédit très abîmé, arrérages, préavis, besoin rapide</dd></div>
+          <div><dt>Durée habituelle</dt><dd>Un pont de 6 à 24 mois</dd></div>
+        </dl>
+      </article>
+      <article class="rung r-b rv">
+        <div class="lvl"><span class="code">B</span><span class="cost">Coût <i class="f"></i><i class="f"></i><i></i></span></div>
+        <h3>Prêteurs alternatifs</h3>
+        <p>Plus souples sur les revenus et le crédit.</p>
+        <dl>
+          <div><dt>Pour qui</dt><dd>Travailleurs autonomes, crédit fragile, consolidation refusée</dd></div>
+          <div><dt>Durée habituelle</dt><dd>Un terme de 1 à 3 ans</dd></div>
+        </dl>
+      </article>
+      <article class="rung r-a rv">
+        <div class="lvl"><span class="code">A</span><span class="cost">Coût <i class="f"></i><i></i><i></i></span></div>
+        <h3>Banques et caisses</h3>
+        <p>Les meilleures conditions, les critères les plus stricts.</p>
+        <dl>
+          <div><dt>Pour qui</dt><dd>Dossiers qui cochent toutes les cases</dd></div>
+          <div><dt>Durée habituelle</dt><dd>Terme de 1 à 5 ans et plus</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="ladder-path rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+      <span>Le plan Kelto : vous placer à l'étage le plus haut possible aujourd'hui, puis vous faire monter d'un étage à chaque échéance.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SITUATIONS ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Pour qui</span>
+      <h2>Les dossiers que les banques refusent, on les voit chaque semaine</h2>
+    </div>
+    <div class="sit">
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></svg></div>
+        <h3>Travailleur autonome</h3>
+        <p>Revenu déclaré bas? Certains prêteurs regardent vos relevés bancaires.</p>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></div>
+        <h3>Crédit abîmé</h3>
+        <p>Retards, proposition, faillite : l'équité compte plus que la cote.</p>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="4" rx="1.5"/><rect x="3" y="10.5" width="18" height="4" rx="1.5"/><rect x="3" y="16" width="18" height="4" rx="1.5"/></svg></div>
+        <h3>Dettes à regrouper</h3>
+        <p>Vos ratios bloquent la consolidation que vous voulez faire.</p>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5v.01"/></svg></div>
+        <h3>Arrérages ou préavis</h3>
+        <p>Taxes ou paiements en retard : ça se règle mieux tôt.</p>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg></div>
+        <h3>Renouvellement refusé</h3>
+        <p>Votre banque ne veut plus renouveler. Il faut un autre prêteur.</p>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+        <h3>Revenus atypiques</h3>
+        <p>Commissions, revenus locatifs, nouvel emploi.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESSUS + PLAN DE SORTIE ============ -->
+<section class="sec sec-alt">
+  <div class="wrap split rev">
+    <div class="frame rv">
+      <img src="/lp/photos/bp-perron.jpg" alt="Un couple soulagé assis sur le perron de sa maison en automne" width="1536" height="1024" loading="lazy">
+    </div>
+    <div>
+      <div class="sec-head rv">
+        <span class="kicker">Comment ça se passe</span>
+        <h2>On règle aujourd'hui, et on prépare la suite</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div><h3>Vous répondez au questionnaire <span class="t">2 min</span></h3><p>On sait déjà quel étage viser.</p></div></div>
+        <div class="step rv"><div><h3>Appel découverte avec un courtier <span class="t">20 min</span></h3><p>Sans jugement, sans paperasse.</p></div></div>
+        <div class="step rv"><div><h3>On présente le dossier aux bons prêteurs</h3><p>Toujours l'option la moins chère d'abord.</p></div></div>
+        <div class="step rv"><div><h3>Vous voyez tout par écrit</h3><p>Taux, frais et paiement, avant de signer.</p></div></div>
+        <div class="step rv"><div><h3>Le plan de sortie</h3><p>Avant l'échéance, on vise l'étage suivant.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS GOOGLE (vrais avis, traduits de l'anglais) ============ -->
+<section class="sec sec-navy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Avis Google</span>
+      <h2>« Il a quand même trouvé un prêteur prêt à nous accepter. »</h2>
+    </div>
+    <div class="g-summary rv">
+      <span class="score">5,0</span>
+      <span><span class="stars" aria-label="5 étoiles sur 5"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><small>85 avis Google, tous à 5 étoiles</small></span>
+      <a class="btn btn-ghost" href="https://www.google.com/search?q=Kelto+courtier+hypoth%C3%A9caire+Montr%C3%A9al" target="_blank" rel="noopener">Voir tous les avis</a>
+    </div>
+    <div class="reviews"><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« Notre dossier de travailleur autonome était compliqué. Randy a quand même trouvé un prêteur prêt à nous accepter, à de très bonnes conditions. »</p><figcaption class="who"><span class="av">N</span><span><b>Nimesh G.</b><br><span class="src">Travailleur autonome · Avis Google</span></span></figcaption></figure><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« Ma banque traînait les pieds. Jeff a pris le relais, s'est occupé de tout et avait l'approbation en une semaine. »</p><figcaption class="who"><span class="av">K</span><span><b>Kolkata</b><br><span class="src">Dossier bloqué en banque · Avis Google</span></span></figcaption></figure><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« Je suis arrivée avec un dossier compliqué et très peu de temps. Ryan est resté calme, m'a rassurée et a livré, même face aux imprévus. »</p><figcaption class="who"><span class="av">S</span><span><b>Samanta</b><br><span class="src">Dossier complexe · Avis Google</span></span></figcaption></figure></div>
+    <p class="rv-note">Avis rédigés en anglais sur Google, traduits et abrégés.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Questions fréquentes</span>
+      <h2>Des réponses franches</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Prêteur B ou prêteur privé, quelle différence?</summary>
+        <div class="a">Le B est une institution réglementée, plus souple que la banque. Le privé prête surtout sur l'équité de la maison, pour une période plus courte, et coûte plus cher.</div></details>
+      <details><summary>Est-ce que ça coûte plus cher qu'à la banque?</summary>
+        <div class="a">Oui. Les taux sont plus élevés et des frais peuvent s'ajouter. Vous voyez tout par écrit avant de signer.</div></details>
+      <details><summary>J'ai fait une proposition de consommateur. Est-ce possible?</summary>
+        <div class="a">Souvent, oui, si vous avez de l'équité dans votre propriété.</div></details>
+      <details><summary>Je ne veux pas rester pris avec un taux élevé.</summary>
+        <div class="a">C'est le but du plan de sortie : avant l'échéance, on vise un prêteur moins cher.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="wrap">
+    <div>
+      <h2>Un refus de la banque, c'est un avis. Pas une décision finale.</h2>
+      <p>Deux minutes pour savoir à quel étage votre dossier se place.</p>
+    </div>
+    <div class="acts">
+      <a class="btn btn-white" href="#quiz" data-go-quiz>Voir mes options</a>
+      <a class="btn btn-ghost" href="tel:+15146606655">514 660-6655</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <img src="/lp/logos/logo-kelto-blanc.png" alt="Kelto, financement commercial et résidentiel" width="133" height="46">
+      <div class="contact">
+        <a href="tel:+15146606655">514 660-6655</a>
+        <a href="mailto:info@kelto.ca">info@kelto.ca</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Kelto, courtiers hypothécaires agréés au Québec. 1250, boul. René-Lévesque Ouest, bureau 2200, Montréal. <!-- À FAIRE : ajouter le nom du cabinet et le numéro de permis AMF --></p>
+      <p>Les taux, montants et estimations sont fournis à titre indicatif seulement et demeurent sujets à l'approbation du prêteur. Les prêts alternatifs et privés comportent des taux et des frais plus élevés qu'un prêt conventionnel. Le questionnaire ne constitue pas une demande de crédit.</p>
+      <p>Certaines images sont des mises en situation. <a href="https://kelto.ca">kelto.ca</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="#quiz" data-go-quiz>Voir mes options</a>
+  <a class="btn btn-ghost" href="tel:+15146606655" aria-label="Appeler Kelto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+</div>
+
+<script>
+/* ==========================================================================
+   Configuration du questionnaire, page REFUSÉ PAR LA BANQUE (B + privé)
+   La « piste » (A, B, prive, analyse) part dans le webhook pour router le lead.
+   ========================================================================== */
+(function () {
+  var VAL = { v200: 160, v300: 250, v500: 400, v750: 625, v1m: 875, vplus: 1250 };
+  var SOL = { s0: 0, s100: 70, s250: 175, s400: 325, s600: 500, splus: 700 };
+  var CR  = { c550: 1, c600: 2, c650: 3, c700: 4, c700p: 5, inconnu: 3 };
+
+  window.KELTO = {
+    source: "kelto-refuse-banque",
+    tag: "Analyse de dossier",
+    webhook: "https://services.leadconnectorhq.com/hooks/qXbVnGNwohzqucJ2GC88/webhook-trigger/96c3192a-5840-4b81-b164-c6cc1019b6fb",
+    calendar: "",
+    steps: [
+      { id: "situation", q: "Qu'est-ce qui décrit le mieux votre situation?", type: "choice", options: [
+        { v: "refus", label: "La banque a refusé ma demande", icon: "x" },
+        { v: "autonome", label: "Je suis travailleur autonome", icon: "briefcase" },
+        { v: "credit", label: "Mon crédit a été abîmé", sub: "Retards, proposition, faillite", icon: "card" },
+        { v: "dettes", label: "J'ai des dettes à regrouper", icon: "stack" },
+        { v: "retard", label: "J'ai des paiements en retard ou un préavis", icon: "alert" } ] },
+      { id: "besoin", q: "De quoi avez-vous besoin?", type: "choice", options: [
+        { v: "consolidation", label: "Refinancer pour regrouper mes dettes", icon: "stack" },
+        { v: "renouvellement", label: "Renouveler, ma banque ne veut plus", icon: "refresh" },
+        { v: "liquidites", label: "Sortir de l'argent pour un projet", sub: "Entreprise, rénos, autre", icon: "tool" },
+        { v: "arrerages", label: "Régler des arrérages rapidement", icon: "alert" },
+        { v: "achat", label: "Acheter une propriété", icon: "home" } ] },
+      { id: "credit", q: "Votre cote de crédit, à peu près?", help: "Une approximation suffit. On ne vérifie rien sans votre accord.", type: "chips",
+        skip: "Je ne sais pas, ce n'est pas grave", options: [
+        { v: "c550", label: "&lt; 550", sub: "À rebâtir" },
+        { v: "c600", label: "550+", sub: "Fragile" },
+        { v: "c650", label: "600+", sub: "Moyenne" },
+        { v: "c700", label: "650+", sub: "Bonne" },
+        { v: "c700p", label: "700+", sub: "Très bonne" } ] },
+      { id: "valeur", q: "Combien vaut votre propriété, environ?", type: "choice", cols: 2, options: [
+        { v: "v200", label: "Moins de 200 k$" }, { v: "v300", label: "200 à 300 k$" },
+        { v: "v500", label: "300 à 500 k$" },
+        { v: "v750", label: "500 à 750 k$" }, { v: "v1m", label: "750 k$ à 1 M$" },
+        { v: "vplus", label: "Plus de 1 M$" }, { v: "aucune", label: "Pas encore propriétaire" } ] },
+      { id: "solde", skipIf: function (a) { return a.valeur === "aucune"; }, q: "Combien reste-t-il à payer sur la maison?", help: "Toutes les hypothèques et marges sur la propriété.", type: "choice", cols: 2, options: [
+        { v: "s0", label: "Rien, elle est payée" }, { v: "s100", label: "Moins de 100 k$" },
+        { v: "s250", label: "100 à 250 k$" }, { v: "s400", label: "250 à 400 k$" },
+        { v: "s600", label: "400 à 600 k$" }, { v: "splus", label: "Plus de 600 k$" } ] },
+      { id: "delai", q: "Vous avez besoin d'une solution quand?", type: "choice", options: [
+        { v: "semaine", label: "Cette semaine, c'est urgent", icon: "alert" },
+        { v: "30j", label: "D'ici 30 jours", icon: "calendar" },
+        { v: "3mois", label: "D'ici 3 mois", icon: "clock" },
+        { v: "info", label: "Je m'informe pour l'instant", icon: "search" } ] },
+      { id: "contact", q: "À qui le courtier doit-il parler?", help: "Vos réponses restent confidentielles.", type: "contact", cta: "Voir mes options" }
+    ],
+    angles: {
+      autonome: { h1: "Travailleur autonome refusé par la banque? D'autres prêteurs regardent vos vrais revenus.",
+                  lead: "Votre revenu déclaré est bas parce que vous déduisez vos dépenses. Certains prêteurs se basent sur vos relevés bancaires. Deux minutes pour savoir lesquels." },
+      conso:    { h1: "Regroupez vos dettes sur la maison, même si la banque a dit non.",
+                  lead: "Cartes, marge, prêt auto : un seul paiement, garanti par votre propriété. Kelto présente votre dossier aux prêteurs B et privés quand la banque refuse." },
+      credit:   { h1: "Crédit abîmé? Votre maison compte plus que votre cote.",
+                  lead: "Retards, proposition de consommateur, faillite : avec de l'équité, plusieurs prêteurs disent oui. Deux minutes pour savoir à quel étage vous vous situez." },
+      urgence:  { h1: "Paiements en retard ou préavis reçu? Parlons-en cette semaine.",
+                  lead: "Plus on agit tôt, plus il reste d'options. Un courtier Kelto regarde votre dossier en priorité, sans jugement." }
+    },
+    verdict: function (a) {
+      var proprio = a.valeur && a.valeur !== "aucune";
+      var ltv = proprio && VAL[a.valeur] ? (SOL[a.solde] || 0) / VAL[a.valeur] : null;
+      var pct = ltv !== null ? Math.round(ltv * 100) : null;
+      var cr = CR[a.credit] || 3;
+      var ratio = pct !== null ? "Votre solde représente environ " + pct + " % de la valeur de votre propriété. " : "";
+      var L = function (t) { return [
+        { label: "A · Banque ou caisse", on: t === "A" },
+        { label: "B · Prêteur alternatif", on: t === "B" },
+        { label: "Privé · Prêteur privé", on: t === "prive" } ]; };
+
+      if (!proprio) {
+        return { tier: "B_achat", title: "Un achat avec un dossier atypique, c'est faisable",
+          text: "Sans propriété à donner en garantie, tout repose sur la mise de fonds, les revenus et le crédit. Le courtier vérifie d'abord si une banque peut dire oui, puis les prêteurs B.", ladder: L("B") };
+      }
+      if (ltv > 0.85) {
+        return { tier: "analyse", title: "Votre dossier demande un regard humain",
+          text: ratio + "Avec un solde proche de la valeur de la maison, les options sont plus étroites. Un courtier regarde ce qui reste possible et vous le dit franchement." };
+      }
+      var tier = "B";
+      if (cr >= 4 && ltv <= 0.8 && a.situation !== "retard" && a.situation !== "credit") tier = "A";
+      if (cr <= 1 || a.situation === "retard" || a.besoin === "arrerages" || ltv > 0.8) tier = "prive";
+
+      if (tier === "A") return { tier: "A", ladder: L("A"), title: "Bonne nouvelle : une banque pourrait encore dire oui",
+        text: ratio + "Avec votre profil, un prêteur conventionnel reste dans le portrait. On vérifie cette option en premier, parce que c'est la moins chère." };
+      if (tier === "B") return { tier: "B", ladder: L("B"), title: "Votre piste probable : un prêteur alternatif (B)",
+        text: ratio + "Les prêteurs B regardent votre équité et votre situation réelle, pas seulement votre cote. Souvent un terme de 1 à 2 ans, puis on vise le retour en banque." };
+      return { tier: "prive", ladder: L("prive"), title: "Votre piste probable : un prêt privé, avec un plan de sortie",
+        text: ratio + (a.delai === "semaine" ? "Votre dossier passe en priorité. " : "") + "Le prêt privé s'appuie sur l'équité de la maison. Il coûte plus cher, donc on le traite comme un pont vers un prêteur B ou la banque." };
+    }
+  };
+})();
+</script>
+<script src="/lp/assets/kelto-quiz.js?v=5"></script>
+<script src="/lp/assets/kelto-fx.js?v=1"></script>
+</body>
+</html>

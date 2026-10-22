@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renouvellement hypothécaire, comparez avant de signer | Kelto</title>
+<meta name="description" content="Votre offre de renouvellement est arrivée? Avant de la signer, un courtier Kelto compare votre hypothèque chez plus de 30 prêteurs. Analyse sans frais en 2 minutes.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Ne signez pas votre renouvellement tout de suite | Kelto">
+<meta property="og:description" content="Un courtier compare votre hypothèque chez plus de 30 prêteurs avant votre échéance.">
+<meta property="og:image" content="/lp/photos/re-hero.jpg">
+<meta property="og:locale" content="fr_CA">
+<link rel="icon" href="/lp/logos/logo-kelto-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lp/assets/kelto.css?v=7">
+<link rel="stylesheet" href="/lp/assets/kelto-fx.css?v=3">
+
+<!-- Meta Pixel Kelto -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1472806754667454');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1472806754667454&ev=PageView&noscript=1"></noscript>
+
+<style>
+/* ---------- Propre à cette page : la lettre de renouvellement annotée ---------- */
+.letter-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:960px){.letter-grid{grid-template-columns:1fr 1fr;gap:72px}}
+.letter{position:relative;background:#fff;border:1px solid var(--border);border-radius:6px;
+  box-shadow:var(--shadow-lg);padding:30px 28px 34px;transform:rotate(-1.2deg);max-width:520px;margin:0 auto;width:100%}
+.letter::after{content:"";position:absolute;inset:auto 18px -10px 18px;height:10px;background:#fff;border:1px solid var(--border);border-top:0;border-radius:0 0 6px 6px;z-index:-1}
+.l-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.l-bank{display:flex;align-items:center;gap:8px;font-weight:700;color:#94a3b8;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.l-bank i{width:22px;height:22px;border-radius:5px;background:#cbd5e1;display:block}
+.l-date{font-size:12px;color:#94a3b8}
+.l-title{font-weight:700;color:var(--ink);font-size:17px;margin-bottom:14px}
+.l-line{height:8px;border-radius:4px;background:#eef2f6;margin:9px 0}
+.l-line.w80{width:80%}.l-line.w60{width:60%}.l-line.w90{width:90%}.l-line.w40{width:40%}
+.l-row{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 12px;margin:10px -12px;border-radius:8px;font-size:14.5px;color:var(--body)}
+.l-row b{color:var(--ink);font-variant-numeric:tabular-nums}
+.l-row.hl{background:var(--cyan-50);box-shadow:inset 3px 0 0 var(--cyan)}
+.l-sign{margin-top:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.l-sign .sig{flex:1;border-bottom:1.5px solid #cbd5e1;height:30px;position:relative}
+.l-sign .sig span{position:absolute;left:0;bottom:-20px;font-size:11.5px;color:#94a3b8}
+.l-sign .stamp{font-size:12px;font-weight:700;color:var(--warn);border:1.5px solid var(--warn);border-radius:6px;padding:5px 8px;transform:rotate(-4deg);white-space:nowrap}
+.pin{position:absolute;right:-44px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;
+  background:var(--brand);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;box-shadow:0 0 0 4px #fff}
+.notes{display:grid;gap:22px;counter-reset:n}
+.note{display:grid;grid-template-columns:36px 1fr;gap:16px}
+.note::before{counter-increment:n;content:counter(n);width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;display:grid;place-items:center}
+.note h3{font-size:18.5px;margin-bottom:5px}
+.note p{font-size:15.5px}
+/* Mobile : les épingles rentrent dans la feuille pour ne pas déborder de l'écran */
+@media(max-width:700px){
+  .letter{transform:none;padding:24px 20px 28px}
+  .l-row{padding-right:44px}
+  .l-row .pin{right:8px}
+  .l-sign .pin{right:-10px!important;top:-14px;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="Kelto, accueil"><img src="/lp/logos/logo-kelto-mark.png" alt="Kelto" width="120" height="34"></a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:+15146606655">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        514 660-6655
+      </a>
+      <a class="btn btn-primary" href="#quiz" data-go-quiz>Comparer mon offre</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO : titre + questionnaire + photo ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-text">
+        <span class="eyebrow">
+          <span class="g"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.1V7H2a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.4 9.1 5.4 12 5.4z"/></svg></span>
+          <span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+          85 avis Google, tous à 5 étoiles
+        </span>
+        <h1 data-h1>Votre offre de renouvellement est arrivée. Ne la signez pas tout de suite.</h1>
+        <p class="lead" data-lead>La lettre de votre banque, c'est son premier prix. Un courtier Kelto compare votre hypothèque chez plus de 30 prêteurs et vous montre l'écart.</p>
+        <ul class="checks">
+          <li>Analyse sans frais et sans engagement</li>
+          <li>Aucune vérification de crédit sans votre accord</li>
+          <li>Un appel de 20 minutes, pas de paperasse</li>
+        </ul>
+      </div>
+
+      <div class="hero-media">
+        <figure class="media">
+          <img src="/lp/photos/re-hero.jpg" alt="Un couple relit la lettre de renouvellement de sa banque à la table de cuisine" width="1536" height="1024" fetchpriority="high">
+          <figcaption class="float-chip">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></span>
+            <span><b>Jusqu'à 120 jours d'avance</b><span>C'est souvent le délai pour réserver un taux ailleurs.</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="hero-quiz">
+      <div class="quiz" id="quiz" aria-live="polite"><!-- rempli par kelto-quiz.js --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDEAU DES PRÊTEURS (scroll-stopper de preuve) ============ -->
+<!-- À FAIRE : faire confirmer la liste par Kelto (retirer tout prêteur avec qui ils ne font pas affaire) -->
+<section class="sec-banques" aria-label="Prêteurs partenaires">
+  <p class="bq-title">Votre hypothèque mise en concurrence chez des prêteurs comme</p>
+  <div class="bq-marquee">
+    <div class="bq-track">
+        <div class="bq-item"><img src="/lp/logos/banques/desjardins.png" alt="Desjardins" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/nationale.png" alt="Banque Nationale" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/td.png" alt="TD" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/rbc.png" alt="RBC" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/bmo.png" alt="BMO" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/scotia.png" alt="Banque Scotia" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/first-national.png" alt="First National" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/mcap.png" alt="MCAP" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/merix.png" alt="Merix" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/cmls.png" alt="CMLS" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/manulife.png" alt="Manuvie" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/equitable.png" alt="Equitable Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/home-trust.png" alt="Home Trust" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/haventree.png" alt="Haventree Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/b2b.jpg" alt="B2B Banque" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/desjardins.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/nationale.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/td.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/rbc.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/bmo.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/scotia.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/first-national.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/mcap.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/merix.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/cmls.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/manulife.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/equitable.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/home-trust.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/haventree.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/b2b.jpg" alt="" aria-hidden="true" width="140" height="40"></div>
+    </div>
+  </div>
+  <p class="bq-note">Banques, caisses et prêteurs spécialisés.</p>
+</section>
+
+<!-- ============ BANDE DE PREUVES (chiffres de kelto.ca) ============ -->
+<section class="proof" aria-label="Kelto en chiffres">
+  <div class="wrap">
+    <div class="proof-item"><b>3 500+</b><span>clients accompagnés</span></div>
+    <div class="proof-item"><b>30+</b><span>prêteurs comparés</span></div>
+    <div class="proof-item"><b>5,0</b><span>sur 85 avis Google</span></div>
+    <div class="proof-item"><b>&lt; 24 h</b><span>pour une première réponse</span></div>
+  </div>
+</section>
+
+<!-- ============ LA LETTRE ANNOTÉE (élément signature de la page) ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Avant de signer</span>
+      <h2>Ce que votre lettre de renouvellement ne vous dit pas</h2>
+    </div>
+
+    <div class="letter-grid">
+      <div class="letter rv" aria-hidden="true">
+        <div class="l-top"><span class="l-bank"><i></i>Votre banque</span><span class="l-date">Avis d'échéance</span></div>
+        <div class="l-title">Offre de renouvellement de votre prêt hypothécaire</div>
+        <div class="l-line w90"></div><div class="l-line w80"></div><div class="l-line w60"></div>
+        <div class="l-row hl"><span>Taux proposé</span><b>•,•• %</b><span class="pin">1</span></div>
+        <div class="l-row"><span>Terme</span><b>5 ans fixe</b></div>
+        <div class="l-row hl"><span>Amortissement restant</span><b>18 ans</b><span class="pin">3</span></div>
+        <div class="l-line w90"></div><div class="l-line w40"></div>
+        <div class="l-sign">
+          <div class="sig"><span>Signature du client</span></div>
+          <span class="stamp" style="position:relative">Retourner avant le 15<span class="pin" style="right:-40px">2</span></span>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note rv"><div><h3>Le taux proposé est un taux d'ouverture</h3><p>Rien ne vous oblige à l'accepter, et votre banque le sait.</p></div></div>
+        <div class="note rv"><div><h3>La date limite sert à vous presser</h3><p>À l'échéance, vous pouvez changer de prêteur sans pénalité.</p></div></div>
+        <div class="note rv"><div><h3>Le reste est choisi pour vous</h3><p>Terme, amortissement, montant : l'échéance est le moment de tout revoir.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TROIS FAÇONS D'UTILISER L'ÉCHÉANCE ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Votre échéance, vos options</span>
+      <h2>Renouveler, refinancer ou regrouper</h2>
+    </div>
+    <div class="cards c3">
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg></div>
+        <h3>Renouveler ailleurs</h3>
+        <p>Même montant, meilleures conditions, chez l'un de plus de 30 prêteurs.</p>
+        <span class="tag">Le plus simple</span>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3>Refinancer</h3>
+        <p>Utilisez la valeur prise par votre maison, jusqu'à 80 %, pour un projet.</p>
+        <span class="tag">Utiliser votre équité</span>
+      </article>
+      <article class="card rv">
+        <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="4" rx="1.5"/><rect x="3" y="10.5" width="18" height="4" rx="1.5"/><rect x="3" y="16" width="18" height="4" rx="1.5"/></svg></div>
+        <h3>Regrouper vos dettes</h3>
+        <p>Cartes, marge et prêt auto dans l'hypothèque. Un seul paiement.</p>
+        <span class="tag">Alléger le budget</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFINANCEMENT : PHOTO + ARGUMENT ============ -->
+<section class="sec">
+  <div class="wrap split">
+    <div class="frame rv">
+      <img src="/lp/photos/re-renos.jpg" alt="Un couple consulte une soumission de rénovation dans sa cuisine en chantier" width="1536" height="1024" loading="lazy">
+      <div class="float-chip right">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+        <span><b>Sans pénalité à l'échéance</b><span>Le meilleur moment pour refinancer</span></span>
+      </div>
+    </div>
+    <div class="sec-head rv">
+      <span class="kicker">Refinancement</span>
+      <h2>Votre maison a travaillé pendant cinq ans. Faites-la travailler pour vous.</h2>
+      <p>Refinancer en plein terme coûte souvent une pénalité. À l'échéance, non. C'est le moment de calculer votre projet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMENT ÇA SE PASSE ============ -->
+<section class="sec sec-alt">
+  <div class="wrap split rev">
+    <div class="frame rv">
+      <img src="/lp/photos/re-appel.jpg" alt="Une propriétaire au téléphone avec un courtier, carnet de notes sur les genoux" width="1536" height="1024" loading="lazy">
+    </div>
+    <div>
+      <div class="sec-head rv">
+        <span class="kicker">Comment ça se passe</span>
+        <h2>Quatre étapes, et vous décidez à la fin</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div><h3>Vous répondez à 6 questions <span class="t">2 min</span></h3><p>Échéance, valeur, solde, objectif.</p></div></div>
+        <div class="step rv"><div><h3>Un courtier vous appelle <span class="t">20 min</span></h3><p>On comprend ce que vous voulez obtenir.</p></div></div>
+        <div class="step rv"><div><h3>On met les prêteurs en concurrence</h3><p>Banques, caisses et prêteurs spécialisés.</p></div></div>
+        <div class="step rv"><div><h3>Vous comparez, par écrit</h3><p>Si l'offre de votre banque est la meilleure, on vous le dit.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS GOOGLE (vrais avis, traduits de l'anglais) ============ -->
+<section class="sec sec-navy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Avis Google</span>
+      <h2>« Un meilleur taux que ce que ma banque était prête à discuter. »</h2>
+    </div>
+    <div class="g-summary rv">
+      <span class="score">5,0</span>
+      <span><span class="stars" aria-label="5 étoiles sur 5"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><small>85 avis Google, tous à 5 étoiles</small></span>
+      <a class="btn btn-ghost" href="https://www.google.com/search?q=Kelto+courtier+hypoth%C3%A9caire+Montr%C3%A9al" target="_blank" rel="noopener">Voir tous les avis</a>
+    </div>
+    <div class="reviews"><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« J'ai fait mon renouvellement avec Randy et ça a été beaucoup plus simple que prévu. Il m'a obtenu un meilleur taux que ce que ma banque était prête à discuter. »</p><figcaption class="who"><span class="av">A</span><span><b>Aman K.</b><br><span class="src">Renouvellement · Avis Google</span></span></figcaption></figure><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« Une expérience incroyable pour le refinancement de mon hypothèque. Ryan était toujours disponible pour mes (nombreuses) questions. J'ai senti qu'il avait mes intérêts à coeur. »</p><figcaption class="who"><span class="av">G</span><span><b>George E.</b><br><span class="src">Refinancement · Avis Google</span></span></figcaption></figure><figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><p>« Demandez Jeff chez Kelto. Il a réussi ce que je croyais impossible : faire approuver mon dossier avant l'expiration de ma garantie de taux. »</p><figcaption class="who"><span class="av">I</span><span><b>Iris H.</b><br><span class="src">Garantie de taux · Avis Google</span></span></figcaption></figure></div>
+    <p class="rv-note">Avis rédigés en anglais sur Google, traduits et abrégés.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Questions fréquentes</span>
+      <h2>Avant le premier appel</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Changer de prêteur à l'échéance, ça coûte une pénalité?</summary>
+        <div class="a">Non. À la fin du terme, il n'y a pas de pénalité. Les frais éventuels (évaluation, transfert) vous sont précisés avant de signer.</div></details>
+      <details><summary>Combien ça coûte de passer par Kelto?</summary>
+        <div class="a">L'analyse et l'appel sont sans frais et sans engagement.</div></details>
+      <details><summary>Mon échéance est dans huit mois. C'est trop tôt?</summary>
+        <div class="a">Non. Plusieurs prêteurs réservent un taux jusqu'à 120 jours d'avance, et préparer le dossier tôt évite de signer à la dernière minute.</div></details>
+      <details><summary>Allez-vous vérifier mon crédit?</summary>
+        <div class="a">Pas sans votre autorisation. Le questionnaire n'y touche pas.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="wrap">
+    <div>
+      <h2>Deux minutes avant de signer, ça vaut la peine.</h2>
+      <p>Comparez l'offre de votre banque à celles de plus de 30 prêteurs.</p>
+    </div>
+    <div class="acts">
+      <a class="btn btn-white" href="#quiz" data-go-quiz>Comparer mon offre</a>
+      <a class="btn btn-ghost" href="tel:+15146606655">514 660-6655</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <img src="/lp/logos/logo-kelto-blanc.png" alt="Kelto, financement commercial et résidentiel" width="133" height="46">
+      <div class="contact">
+        <a href="tel:+15146606655">514 660-6655</a>
+        <a href="mailto:info@kelto.ca">info@kelto.ca</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Kelto, courtiers hypothécaires agréés au Québec. 1250, boul. René-Lévesque Ouest, bureau 2200, Montréal. <!-- À FAIRE : ajouter le nom du cabinet et le numéro de permis AMF --></p>
+      <p>Les taux, montants et estimations sont fournis à titre indicatif seulement et demeurent sujets à l'approbation du prêteur. Le questionnaire ne constitue pas une demande de crédit.</p>
+      <p>Certaines images sont des mises en situation. <a href="https://kelto.ca">kelto.ca</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre d'action collante (mobile) -->
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="#quiz" data-go-quiz>Comparer mon offre</a>
+  <a class="btn btn-ghost" href="tel:+15146606655" aria-label="Appeler Kelto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+</div>
+
+<script>
+/* ==========================================================================
+   Configuration du questionnaire, page RENOUVELLEMENT
+   WEBHOOK : coller l'URL du webhook entrant (GHL de Kelto ou n8n).
+   CALENDAR : lien du calendrier GHL si on veut offrir la réservation directe.
+   ========================================================================== */
+(function () {
+  // Points milieux des tranches, en milliers de dollars, pour estimer le ratio prêt sur valeur.
+  var VAL = { v200: 160, v300: 250, v500: 400, v750: 625, v1m: 875, vplus: 1250 };
+  var SOL = { s100: 70, s250: 175, s400: 325, s600: 500, splus: 700 };
+
+  window.KELTO = {
+    source: "kelto-renouvellement",
+    tag: "Analyse de renouvellement",
+    webhook: "https://services.leadconnectorhq.com/hooks/qXbVnGNwohzqucJ2GC88/webhook-trigger/96c3192a-5840-4b81-b164-c6cc1019b6fb",
+    calendar: "",
+    steps: [
+      { id: "echeance", q: "Quand arrive l'échéance de votre hypothèque?", type: "choice", options: [
+        { v: "moins_30j", label: "Dans moins de 30 jours", icon: "alert" },
+        { v: "1_4_mois", label: "Dans 1 à 4 mois", icon: "calendar" },
+        { v: "4_12_mois", label: "Dans 4 à 12 mois", icon: "clock" },
+        { v: "offre_recue", label: "J'ai déjà reçu l'offre de ma banque", icon: "home" },
+        { v: "refi_maintenant", label: "Je veux refinancer maintenant", sub: "Même en plein terme", icon: "refresh" } ] },
+      { id: "objectif", q: "Qu'est-ce que vous voulez obtenir?", help: "Choisissez ce qui compte le plus.", type: "choice", options: [
+        { v: "meilleur_taux", label: "De meilleures conditions, même montant", icon: "trend" },
+        { v: "renos", label: "Sortir de l'argent pour un projet", sub: "Rénos, chalet, études...", icon: "tool" },
+        { v: "dettes", label: "Regrouper des dettes", sub: "Cartes, marge, prêt auto", icon: "stack" },
+        { v: "baisser_paiement", label: "Baisser mon paiement mensuel", icon: "card" },
+        { v: "pas_sur", label: "Je ne sais pas encore", icon: "help" } ] },
+      { id: "valeur", q: "Combien vaut votre propriété, environ?", help: "Une estimation suffit, on la précise ensemble.", type: "choice", cols: 2, options: [
+        { v: "v200", label: "Moins de 200 k$" }, { v: "v300", label: "200 à 300 k$" },
+        { v: "v500", label: "300 à 500 k$" },
+        { v: "v750", label: "500 à 750 k$" }, { v: "v1m", label: "750 k$ à 1 M$" },
+        { v: "vplus", label: "Plus de 1 M$" } ] },
+      { id: "solde", q: "Et le solde de votre hypothèque?", type: "choice", cols: 2, options: [
+        { v: "s100", label: "Moins de 100 k$" }, { v: "s250", label: "100 à 250 k$" },
+        { v: "s400", label: "250 à 400 k$" }, { v: "s600", label: "400 à 600 k$" },
+        { v: "splus", label: "Plus de 600 k$" } ] },
+      { id: "revenus", q: "Comment gagnez-vous votre revenu principal?", type: "choice", options: [
+        { v: "salarie", label: "Salarié", icon: "user" },
+        { v: "autonome", label: "Travailleur autonome ou propriétaire d'entreprise", icon: "briefcase" },
+        { v: "retraite", label: "Retraité", icon: "home" },
+        { v: "autre", label: "Autre ou plusieurs sources", icon: "stack" } ] },
+      { id: "contact", q: "Où on vous envoie votre analyse?", help: "Un courtier vous rappelle, aucun engagement.", type: "contact", cta: "Recevoir mon analyse" }
+    ],
+    angles: {
+      refi: { h1: "Votre maison a pris de la valeur. Votre hypothèque peut en profiter.",
+              lead: "À l'échéance, refinancer se fait sans pénalité. En 2 minutes, voyez combien d'équité vous pourriez utiliser pour vos rénos ou vos projets." },
+      conso: { h1: "Votre renouvellement peut aussi effacer vos cartes de crédit.",
+               lead: "Cartes, marge, prêt auto : regroupés dans l'hypothèque à l'échéance, au taux d'une hypothèque. Un courtier Kelto calcule votre nouveau paiement." }
+    },
+    verdict: function (a) {
+      var ltv = VAL[a.valeur] && SOL[a.solde] ? SOL[a.solde] / VAL[a.valeur] : null;
+      var pct = ltv ? Math.round(ltv * 100) : null;
+      var tier = a.revenus === "autonome" ? "A_ou_B" : "A";
+      var ratio = pct ? "Votre solde représente environ " + pct + " % de la valeur de votre propriété. " : "";
+
+      if (a.echeance === "moins_30j" || a.echeance === "offre_recue") {
+        return { tier: tier, title: "Votre échéance approche, on vous priorise",
+          text: ratio + "Ne retournez pas la lettre de votre banque avant notre appel : il reste assez de temps pour comparer, mais pas pour attendre." };
+      }
+      if ((a.objectif === "renos" || a.objectif === "dettes") && ltv !== null) {
+        return ltv <= 0.75
+          ? { tier: tier, title: "Vous avez probablement de l'équité à utiliser",
+              text: ratio + "Un refinancement peut aller jusqu'à 80 % de la valeur, ce qui laisse de la place pour votre projet. Le courtier vous montre le nouveau paiement." }
+          : { tier: tier, title: "On regarde ensemble la marge de manoeuvre",
+              text: ratio + "La marge est plus mince sous la limite de 80 %, mais d'autres options existent. On vous les présente à l'appel." };
+      }
+      return { tier: tier, title: "Bonne nouvelle : vous avez le temps de comparer",
+        text: ratio + "On peut faire jouer la concurrence entre plus de 30 prêteurs avant que vous signiez quoi que ce soit." };
+    }
+  };
+})();
+</script>
+<script src="/lp/assets/kelto-quiz.js?v=5"></script>
+<script src="/lp/assets/kelto-fx.js?v=1"></script>
+</body>
+</html>
