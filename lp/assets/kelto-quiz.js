@@ -222,7 +222,7 @@
     }, data, flat(answers), prefix(labels), track);
 
     send(payload).then(function () {
-      if (window.fbq) try { fbq("track", "Lead", { content_name: C.source }); } catch (x) {}
+      if (window.keltoMeta) try { keltoMeta.track("Lead"); } catch (x) {}
       // Page de remerciement (VSL). Le prénom et le verdict passent par sessionStorage,
       // jamais dans l'URL (données personnelles).
       try {
