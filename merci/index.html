@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demande reçue, merci | Kelto</title>
+<meta name="description" content="Votre demande est reçue. Regardez la vidéo pendant qu'un courtier Kelto prépare votre dossier.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/lp/logos/logo-kelto-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lp/assets/kelto.css?v=7">
+<link rel="stylesheet" href="/lp/assets/kelto-fx.css?v=3">
+
+<!-- Meta Pixel Kelto : 1472806754667454 (historique) + 973439061907168 (ajouté le 22 oct 2026). Les deux reçoivent PageView, Lead et les événements du quiz. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1472806754667454');fbq('init','973439061907168');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1472806754667454&ev=PageView&noscript=1"></noscript>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=973439061907168&ev=PageView&noscript=1"></noscript>
+
+<style>
+/* ---------- Page de remerciement : la VSL est le héros ---------- */
+.ty{padding:28px 0 64px;background:
+  radial-gradient(700px 380px at 92% 8%,rgba(31,173,219,.16),transparent 70%),
+  linear-gradient(180deg,#e9f1f9 0%,#f6f9fc 55%,#fff 100%)}
+.ty .wrap{max-width:900px;text-align:center}
+.ty-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ok-50);color:var(--ok);
+  font-weight:600;font-size:14px;border-radius:var(--r-pill);padding:7px 14px}
+.ty-badge svg{width:16px;height:16px}
+.ty h1{font-size:clamp(28px,5vw,46px);font-weight:750;margin:16px 0 10px}
+.ty h1 .brand{color:var(--brand)}
+.ty .lead{font-size:clamp(16px,2vw,18.5px);max-width:640px;margin:0 auto}
+
+/* Lecteur : vignette + bouton, l'iframe YouTube ne charge qu'au clic (page plus rapide) */
+.vsl{position:relative;margin:28px auto 0;max-width:820px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;
+  background:#0b2c4f;box-shadow:var(--shadow-lg);cursor:pointer}
+.vsl img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.vsl:hover img{transform:scale(1.03)}
+.vsl::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,44,79,.55))}
+.vsl .play{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:88px;height:88px;border:0;border-radius:50%;
+  background:var(--brand);color:#fff;display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 0 0 10px rgba(255,255,255,.25),0 12px 30px rgba(0,0,0,.3);transition:transform .2s}
+.vsl:hover .play{transform:translate(-50%,-50%) scale(1.06)}
+.vsl .play svg{width:34px;height:34px;margin-left:5px}
+.vsl .cap{position:absolute;z-index:1;left:20px;bottom:16px;color:#fff;font-weight:600;font-size:15px;text-align:left}
+.vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vsl.on{cursor:default}.vsl.on::after{display:none}
+
+.ty-note{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* Verdict du questionnaire, repris de la landing page */
+.ty-verdict{max-width:720px;margin:36px auto 0;text-align:left;background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 24px 22px;box-shadow:var(--shadow)}
+.ty-verdict h2{font-size:21px;margin-bottom:8px}
+.ty-verdict p{font-size:15.5px}
+.ty-verdict[hidden]{display:none}
+
+.ty-steps{max-width:720px;margin:28px auto 0;display:grid;gap:12px;text-align:left}
+.ty-step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:16px 18px}
+.ty-step b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:14px}
+.ty-step span{color:var(--ink);font-size:15.5px;padding-top:4px}
+.ty-call{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* Calendrier GHL « Analyse de votre dossier hypothécaire » (Randy, Jeffrey, Ryan) */
+.ty-cal{max-width:820px;margin:26px auto 0;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:10px 6px 4px;overflow:hidden}
+.ty-cal iframe{width:100%;min-height:720px;border:0;overflow:hidden;display:block}
+.ty-sub{margin:44px auto 0;max-width:720px;font-size:clamp(22px,3vw,28px)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#" aria-label="Kelto"><img src="/lp/logos/logo-kelto-mark.png" alt="Kelto" width="120" height="34"></a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:+15146606655" style="display:inline-flex">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        514 660-6655
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="ty">
+  <div class="wrap">
+    <span class="ty-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span id="ty-badge-txt">Demande reçue</span></span>
+    <h1 id="ty-title">Dernière étape : <span class="brand">choisissez l'heure de votre appel.</span></h1>
+    <p class="lead" id="ty-lead">Un courtier Kelto vous appelle au moment qui vous convient, environ 20 minutes, sans engagement.</p>
+
+    <!-- Calendrier de réservation GHL (le même pour les 3 offres) -->
+    <div class="ty-cal">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/UGlrZg3Bd1VmmlT0fSW7" scrolling="no" id="UGlrZg3Bd1VmmlT0fSW7_merci" title="Réserver mon appel avec un courtier Kelto"></iframe>
+    </div>
+    <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+
+    <h2 class="ty-sub">En attendant votre appel, <span class="brand">regardez cette courte vidéo.</span></h2>
+
+    <!-- VSL : remplacer VIDEO_ID pour changer de vidéo -->
+    <div class="vsl" id="vsl" data-id="L09N6MzikRc" role="button" tabindex="0" aria-label="Lire la vidéo de présentation de Kelto">
+      <img src="https://i.ytimg.com/vi/L09N6MzikRc/sddefault.jpg" alt="">
+      <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+    </div>
+    <p class="ty-note">Pas le temps maintenant? Gardez votre téléphone près de vous : on vous texte pour fixer l'appel.</p>
+
+    <div class="ty-verdict" id="ty-verdict" hidden>
+      <h2 id="ty-v-title"></h2>
+      <p id="ty-v-text"></p>
+      <div class="mini-ladder" id="ty-v-ladder"></div>
+    </div>
+
+    <div class="ty-steps">
+      <div class="ty-step"><b>1</b><span>Choisissez l'heure de votre appel dans le calendrier ci-dessus.</span></div>
+      <div class="ty-step"><b>2</b><span>Un courtier Kelto vous appelle à l'heure choisie, environ 20 minutes.</span></div>
+      <div class="ty-step"><b>3</b><span>Vous recevez vos options par écrit. Vous décidez, ou pas.</span></div>
+    </div>
+
+    <div class="ty-call">
+      <a class="btn btn-primary" href="tel:+15146606655">Pressé ? Appelez-nous : 514 660-6655</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <img src="/lp/logos/logo-kelto-blanc.png" alt="Kelto, financement commercial et résidentiel" width="133" height="46">
+      <div class="contact">
+        <a href="tel:+15146606655">514 660-6655</a>
+        <a href="mailto:info@kelto.ca">info@kelto.ca</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Kelto, courtiers hypothécaires agréés au Québec. 1250, boul. René-Lévesque Ouest, bureau 2200, Montréal.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Personnalisation à partir des réponses (sessionStorage, posé par kelto-quiz.js) */
+(function () {
+  "use strict";
+  var d = null;
+  try { d = JSON.parse(sessionStorage.getItem("kelto_merci") || "null"); } catch (e) {}
+  var esc = function (s) { var x = document.createElement("div"); x.textContent = s || ""; return x.innerHTML; };
+  var offre = new URLSearchParams(location.search).get("p") || "";
+  var titres = {
+    "consolidation": "Dernière étape : <span class=\"brand\">réservez votre analyse de regroupement.</span>",
+    "renouvellement": "Dernière étape : <span class=\"brand\">réservez votre comparaison de taux.</span>",
+    "refuse-banque": "Dernière étape : <span class=\"brand\">réservez l'analyse de votre dossier.</span>",
+    "refus-bancaire": "Dernière étape : <span class=\"brand\">réservez l'analyse de votre dossier.</span>"
+  };
+  if (titres[offre]) document.getElementById("ty-title").innerHTML = titres[offre];
+  if (d && d.prenom) {
+    document.getElementById("ty-badge-txt").textContent = "Demande reçue, merci " + d.prenom;
+  }
+  if (d && d.verdict && d.verdict.title) {
+    var v = d.verdict;
+    document.getElementById("ty-v-title").textContent = v.title;
+    document.getElementById("ty-v-text").textContent = v.text || "";
+    var lad = document.getElementById("ty-v-ladder");
+    if (v.ladder) {
+      lad.innerHTML = v.ladder.map(function (r) { return '<div class="' + (r.on ? "on" : "") + '">' + esc(r.label) + "</div>"; }).join("");
+    } else { lad.remove(); }
+    document.getElementById("ty-verdict").hidden = false;
+  }
+
+  /* Lecteur : l'iframe YouTube remplace la vignette au clic */
+  var box = document.getElementById("vsl");
+  var start = function () {
+    if (box.classList.contains("on")) return;
+    box.classList.add("on");
+    box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + box.getAttribute("data-id") +
+      '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Groupe Kelto" ' +
+      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    if (window.fbq) try { fbq("trackCustom", "VSLPlay"); } catch (e) {}
+  };
+  box.addEventListener("click", start);
+  box.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); start(); } });
+})();
+</script>
+</body>
+</html>
