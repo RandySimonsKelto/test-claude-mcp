@@ -1,7 +1,9 @@
 /*!
  * Kelto – chargeur du pixel Meta avec consentement préalable (Loi 25, Québec)
  * --------------------------------------------------------------------------
- * - Rien n'est chargé ni envoyé à Meta tant que le visiteur n'a pas cliqué « Accepter ».
+ * - BANNIÈRE DÉSACTIVÉE (23 oct. 2026, à la demande de Randy, le temps de valider des informations) :
+ *   le pixel démarre dès l'ouverture de la page. Pour la réactiver : BANNER_ON = true ci-dessous.
+ * - Un visiteur qui avait déjà cliqué « Refuser » reste respecté : rien n'est chargé pour lui.
  * - « Refuser » est aussi visible qu'« Accepter » ; le choix est mémorisé 180 jours et modifiable en tout temps.
  * - Le pixel utilisé est TOUJOURS celui de Kelto (jeu de données appartenant au portefeuille Meta de Kelto).
  * - Aucun montant, revenu ni donnée de dossier n'est envoyé : seulement le nom de l'événement et son identifiant.
@@ -36,6 +38,9 @@
   }
   var PRIVACY_URL = CFG.privacyUrl || '/confidentialite.html';
   var SITE = CFG.siteName || 'ce site';
+  // Banniere de consentement. false = pas de banniere, le pixel demarre tout de suite.
+  // Remettre a true (ici ou via window.KELTO_META.consentBanner) pour la reafficher partout.
+  var BANNER_ON = (CFG.consentBanner === undefined) ? false : !!CFG.consentBanner;
   var STORE_KEY = 'kelto_meta_consent_v1';
   var TTL_MS = 180 * 24 * 60 * 60 * 1000;
   var memory = null; // repli si localStorage est indisponible
@@ -162,7 +167,13 @@
     } catch (e) { out = String(Math.random()).slice(2, 2 + n * 2); }
     return out;
   }
-  function granted() { return readChoice() === 'granted'; }
+  // Sans banniere, le pixel est actif par defaut, SAUF pour un visiteur qui a deja refuse.
+  function granted() {
+    var c = readChoice();
+    if (c === 'granted') return true;
+    if (c === 'denied') return false;
+    return !BANNER_ON;
+  }
 
   w.keltoMeta = {
     granted: granted,
@@ -198,7 +209,9 @@
   function init() {
     var c = readChoice();
     if (c === 'granted') startPixel();
-    else if (c === null) showBanner();
+    else if (c === 'denied') { /* choix respecte : rien n'est charge */ }
+    else if (BANNER_ON) showBanner();
+    else startPixel();
     // lien « Gérer mes témoins » : <a href="#" data-kelto-consent-open>
     d.addEventListener('click', function (e) {
       var t = e.target && e.target.closest ? e.target.closest('[data-kelto-consent-open]') : null;
