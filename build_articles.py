@@ -37,7 +37,7 @@ def nav(active):
     out = []
     for href, label in items:
         cur = ' aria-current="page"' if (active == "articles" and href == "articles.html") else ""
-        out.append('<li><a href="%s%s"%s>%s</a></li>' % (("../" if active=="article" and not href.startswith("articles") else ""), href, cur, label))
+        out.append('<li><a href="%s%s"%s>%s</a></li>' % (("../" if active=="article" else ""), href, cur, label))
     return '<nav class="main-nav" id="mainNav" aria-label="Navigation principale"><ul>%s</ul></nav>' % "".join(out)
 
 def head(title, desc, canonical, up, extra=""):
@@ -174,6 +174,22 @@ def build_sitemap(entries):
         u.append('<url><loc>%s/articles/%s.html</loc><lastmod>%s</lastmod></url>' % (SITE, e["slug"], e["date"]))
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % "\n".join(u)
 
+def repair_built():
+    """Corrige, dans les articles deja construits, le lien Articles du menu
+    (articles.html pointait vers /articles/articles.html, qui n'existe pas)."""
+    BAD  = '<li><a href="articles.html">Articles</a></li>'
+    GOOD = '<li><a href="../articles.html">Articles</a></li>'
+    n = 0
+    for name in sorted(os.listdir(ART_DIR)):
+        if not name.endswith(".html"):
+            continue
+        path = os.path.join(ART_DIR, name)
+        raw = open(path, encoding="utf-8").read()
+        if raw.startswith(MARKER) and BAD in raw:
+            open(path, "w", encoding="utf-8").write(raw.replace(BAD, GOOD))
+            n += 1
+    print("Articles repares : %d" % n)
+
 def main():
     os.makedirs(ART_DIR, exist_ok=True)
     manifest_path = os.path.join(ART_DIR, "manifest.json")
@@ -201,6 +217,7 @@ def main():
     open(os.path.join(ROOT, "articles.html"), "w", encoding="utf-8").write(build_index(entries))
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(build_sitemap(entries))
     print("Articles construits : %d | total publie : %d" % (built, len(entries)))
+    repair_built()
 
 if __name__ == "__main__":
     main()
