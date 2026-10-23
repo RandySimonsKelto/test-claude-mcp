@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un seul paiement par mois, consolidation pour propriétaires | Kelto</title>
+<meta name="description" content="Propriétaire? Regroupez vos cartes, votre marge et votre prêt auto dans votre hypothèque. Un seul paiement. Analyse sans frais en 2 minutes avec un courtier Kelto.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Un seul paiement par mois. Enfin de l'air dans votre budget. | Kelto">
+<meta property="og:description" content="Cartes, marge, prêt auto : un seul paiement, garanti par votre maison.">
+<meta property="og:image" content="/lp/photos/co-hero.jpg">
+<meta property="og:locale" content="fr_CA">
+<link rel="icon" href="/lp/logos/logo-kelto-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lp/assets/kelto.css?v=7">
+<link rel="stylesheet" href="/lp/assets/kelto-fx.css?v=3">
+
+<!-- Pixel Meta de Kelto : chargeur avec consentement prealable (Loi 25). -->
+<script>window.KELTO_META={pixelId:"973439061907168",privacyUrl:"/confidentialite.html",siteName:"Kelto"};</script>
+<script src="/kelto-meta-pixel.js" defer></script>
+
+<style>
+/* ---------- Propre à cette page : la carte « Avant / Après » sur la photo ---------- */
+.co-media{position:relative;margin-top:30px}
+.co-media img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r-card);box-shadow:var(--shadow)}
+.ba{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);padding:16px 16px 14px;margin:-40px 14px 0;position:relative}
+@media(min-width:640px){.ba{position:absolute;left:16px;top:16px;width:250px;margin:0}}
+.ba-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.ba-top b{color:var(--ink);font-size:15px}
+.ba-top span{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.ba ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.ba li{display:flex;justify-content:space-between;font-size:13.5px;color:var(--body);padding:5px 0;border-bottom:1px dashed var(--border);position:relative}
+.ba li b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ba li::after{content:"";position:absolute;left:0;top:50%;height:1.5px;width:0;background:var(--brand)}
+.ba.go li{color:var(--muted)}
+.ba.go li b{color:var(--muted)}
+.ba.go li::after{animation:strike .4s ease forwards}
+.ba.go li:nth-child(2)::after{animation-delay:.25s}.ba.go li:nth-child(3)::after{animation-delay:.5s}
+.ba.go li:nth-child(4)::after{animation-delay:.75s}.ba.go li:nth-child(5)::after{animation-delay:1s}
+@keyframes strike{to{width:100%}}
+.ba-after{margin-top:10px;display:flex;align-items:center;gap:10px;background:var(--brand);color:#fff;border-radius:10px;padding:10px 12px;
+  opacity:.25;transition:opacity .5s ease 1.4s}
+.ba.go .ba-after{opacity:1}
+.ba-after svg{width:20px;height:20px;flex:none}
+.ba-after b{display:block;font-size:14.5px}
+.ba-after span{display:block;font-size:12px;color:#bcd3ea}
+@media(prefers-reduced-motion:reduce){.ba li::after{width:100%;animation:none}.ba-after{opacity:1;transition:none}}
+
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:800px){.tiles{grid-template-columns:repeat(6,1fr)}}
+.tile{background:#fff;border-radius:var(--r-card);padding:22px 14px;text-align:center;display:grid;justify-items:center;gap:12px;font-weight:600;color:var(--ink);font-size:15px;line-height:1.3}
+.tile .ci{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--brand);color:#fff}
+.tile .ci svg{width:22px;height:22px}
+
+.fit{display:grid;gap:14px;margin-top:26px}
+.fit-box{border-radius:var(--r-card);padding:20px 22px}
+.fit-yes{background:var(--brand-50)}
+.fit-no{background:var(--warn-50)}
+.fit-box h3{font-size:15px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.fit-yes h3{color:var(--brand)}.fit-no h3{color:var(--warn)}
+.fit-box .checks{margin:0}
+.fit-no p{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="Kelto, accueil"><img src="/lp/logos/logo-kelto-mark.png" alt="Kelto" width="120" height="34"></a>
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:+15146606655">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        514 660-6655
+      </a>
+      <a class="btn btn-primary" href="#quiz" data-go-quiz>Calculer mon regroupement</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-text">
+        <span class="eyebrow">
+          <span class="g"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.1V7H2a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.4 9.1 5.4 12 5.4z"/></svg></span>
+          <span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+          85 avis Google, tous à 5 étoiles
+        </span>
+        <h1 data-h1>Un seul paiement par mois. Enfin de l'air dans votre budget.</h1>
+        <p class="lead" data-lead>Propriétaire? Vos cartes, votre marge et votre prêt auto regroupés en un seul paiement, au taux d'une hypothèque.</p>
+        <ul class="checks">
+          <li>Pour les propriétaires avec une hypothèque</li>
+          <li>Aucune vérification de crédit sans votre accord</li>
+          <li>Analyse sans frais en 2 minutes</li>
+        </ul>
+      </div>
+
+      <div class="hero-media">
+        <div class="co-media">
+          <img src="/lp/photos/co-hero.jpg" alt="Un couple regroupe ses relevés de cartes et ses factures sur l'îlot de la cuisine" width="1536" height="1024" fetchpriority="high">
+          <!-- Exemple illustratif : 5 paiements barrés, puis 1 seul -->
+          <div class="ba" id="ba" aria-label="Exemple : cinq paiements regroupés en un seul">
+            <div class="ba-top"><b>5 paiements par mois</b><span>Exemple</span></div>
+            <ul>
+              <li>Carte de crédit<b>310 $</b></li>
+              <li>2e carte de crédit<b>185 $</b></li>
+              <li>Marge de crédit<b>240 $</b></li>
+              <li>Prêt auto<b>545 $</b></li>
+              <li>Carte de magasin<b>90 $</b></li>
+            </ul>
+            <div class="ba-after">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg>
+              <span><b>1 seul paiement</b><span>intégré à votre hypothèque</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-quiz">
+      <div class="quiz" id="quiz" aria-live="polite"><!-- rempli par kelto-quiz.js --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDEAU DES PRÊTEURS (scroll-stopper de preuve) ============ -->
+<!-- À FAIRE : faire confirmer la liste par Kelto (retirer tout prêteur avec qui ils ne font pas affaire) -->
+<section class="sec-banques" aria-label="Prêteurs partenaires">
+  <p class="bq-title">Votre regroupement présenté à des prêteurs comme</p>
+  <div class="bq-marquee">
+    <div class="bq-track">
+        <div class="bq-item"><img src="/lp/logos/banques/desjardins.png" alt="Desjardins" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/nationale.png" alt="Banque Nationale" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/td.png" alt="TD" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/rbc.png" alt="RBC" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/bmo.png" alt="BMO" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/scotia.png" alt="Banque Scotia" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/first-national.png" alt="First National" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/mcap.png" alt="MCAP" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/merix.png" alt="Merix" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/cmls.png" alt="CMLS" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/manulife.png" alt="Manuvie" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/equitable.png" alt="Equitable Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/home-trust.png" alt="Home Trust" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/haventree.png" alt="Haventree Bank" width="140" height="40"></div>
+        <div class="bq-item"><img src="/lp/logos/banques/b2b.jpg" alt="B2B Banque" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/desjardins.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/nationale.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/td.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/rbc.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/bmo.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/scotia.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/first-national.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/mcap.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/merix.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/cmls.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/manulife.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/equitable.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/home-trust.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/haventree.png" alt="" aria-hidden="true" width="140" height="40"></div>
+        <div class="bq-item dup"><img src="/lp/logos/banques/b2b.jpg" alt="" aria-hidden="true" width="140" height="40"></div>
+    </div>
+  </div>
+  <p class="bq-note">Banques, caisses et prêteurs alternatifs.</p>
+</section>
+
+<!-- ============ BANDE DE PREUVES ============ -->
+<section class="proof" aria-label="Kelto en chiffres">
+  <div class="wrap">
+    <div class="proof-item"><b>30+</b><span>prêteurs comparés</span></div>
+    <div class="proof-item"><b>3 500+</b><span>clients accompagnés</span></div>
+    <div class="proof-item"><b>5,0</b><span>sur 85 avis Google</span></div>
+    <div class="proof-item"><b>&lt; 24 h</b><span>pour une première réponse</span></div>
+  </div>
+</section>
+
+<!-- ============ CE QU'ON PEUT REGROUPER ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Ce qu'on regroupe</span>
+      <h2>Tout ce qui coûte plus cher que votre hypothèque</h2>
+    </div>
+    <div class="tiles">
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></span>Cartes de crédit</div>
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>Marge de crédit</div>
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><path d="M6.5 20v1.5M17.5 20v1.5"/></svg></span>Prêt auto</div>
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Prêt personnel</div>
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span>Impôts en retard</div>
+      <div class="tile rv"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.5 12h-13z"/><path d="M8.5 8a3.5 3.5 0 0 1 7 0"/></svg></span>Cartes de magasin</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POUR QUI : LA MAISON ============ -->
+<section class="sec">
+  <div class="wrap split">
+    <div class="frame rv">
+      <img src="/lp/photos/co-maison.jpg" alt="Une propriétaire revient vers sa maison jumelée, un café et son téléphone à la main" width="1536" height="1024" loading="lazy">
+    </div>
+    <div class="rv">
+      <span class="kicker">Pour qui</span>
+      <h2 style="font-size:clamp(28px,4.2vw,40px);font-weight:750;margin:14px 0 0">Votre maison est la clé</h2>
+      <div class="fit">
+        <div class="fit-box fit-yes">
+          <h3>C'est pour vous si</h3>
+          <ul class="checks">
+            <li>Vous êtes propriétaire</li>
+            <li>Votre maison vaut plus que ce que vous devez dessus</li>
+            <li>Vos dettes dépassent environ 15 000 $</li>
+          </ul>
+        </div>
+        <div class="fit-box fit-no">
+          <h3>Pas pour vous si</h3>
+          <p>Vous êtes locataire. Le regroupement s'appuie sur la valeur d'une propriété.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÉTAPES ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Comment ça se passe</span>
+      <h2>Trois étapes</h2>
+    </div>
+    <div class="cards c3">
+      <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div>
+        <h3>Questionnaire</h3><p>2 minutes : vos dettes, votre maison.</p></article>
+      <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+        <h3>Appel de 20 minutes</h3><p>Un courtier calcule votre nouveau paiement.</p></article>
+      <article class="card rv"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3>Un seul paiement</h3><p>Le notaire rembourse vos dettes directement.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS GOOGLE (vrais avis, traduits de l'anglais) ============ -->
+<section class="sec sec-navy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Avis Google</span>
+      <h2>« Il a quand même trouvé un prêteur prêt à nous accepter. »</h2>
+    </div>
+    <div class="g-summary rv">
+      <span class="score">5,0</span>
+      <span><span class="stars" aria-label="5 étoiles sur 5"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span><small>85 avis Google, tous à 5 étoiles</small></span>
+      <a class="btn btn-ghost" href="https://www.google.com/search?q=Kelto+courtier+hypoth%C3%A9caire+Montr%C3%A9al" target="_blank" rel="noopener">Voir tous les avis</a>
+    </div>
+    <div class="reviews">
+      <figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+        <p>« Une expérience incroyable pour le refinancement de mon hypothèque. Ryan était toujours disponible pour mes (nombreuses) questions. J'ai senti qu'il avait mes intérêts à coeur. »</p>
+        <figcaption class="who"><span class="av">G</span><span><b>George E.</b><br><span class="src">Refinancement · Avis Google</span></span></figcaption></figure>
+      <figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+        <p>« Notre dossier de travailleur autonome était compliqué. Randy a quand même trouvé un prêteur prêt à nous accepter, à de très bonnes conditions. »</p>
+        <figcaption class="who"><span class="av">N</span><span><b>Nimesh G.</b><br><span class="src">Travailleur autonome · Avis Google</span></span></figcaption></figure>
+      <figure class="review rv"><span class="stars" aria-label="5 étoiles"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg></span>
+        <p>« Ma banque traînait les pieds. Jeff a pris le relais, s'est occupé de tout et avait l'approbation en une semaine. »</p>
+        <figcaption class="who"><span class="av">K</span><span><b>Kolkata</b><br><span class="src">Dossier bloqué en banque · Avis Google</span></span></figcaption></figure>
+    </div>
+    <p class="rv-note">Avis rédigés en anglais sur Google, traduits et abrégés.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="kicker">Questions fréquentes</span>
+      <h2>En bref</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Combien puis-je regrouper?</summary>
+        <div class="a">Avec un prêteur conventionnel, l'hypothèque totale peut aller jusqu'à 80 % de la valeur de la maison. Au-delà, des prêteurs alternatifs existent.</div></details>
+      <details><summary>Ma banque a refusé. Est-ce encore possible?</summary>
+        <div class="a">Souvent, oui. Kelto travaille aussi avec des prêteurs alternatifs (B) et privés.</div></details>
+      <details><summary>Est-ce que ça coûte quelque chose?</summary>
+        <div class="a">L'analyse et l'appel sont sans frais. Les frais du dossier (notaire, évaluation) vous sont montrés avant de signer.</div></details>
+      <details><summary>Allez-vous vérifier mon crédit?</summary>
+        <div class="a">Pas sans votre autorisation.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="wrap">
+    <div>
+      <h2>Un seul paiement. Deux minutes pour savoir si ça marche pour vous.</h2>
+    </div>
+    <div class="acts">
+      <a class="btn btn-white" href="#quiz" data-go-quiz>Calculer mon regroupement</a>
+      <a class="btn btn-ghost" href="tel:+15146606655">514 660-6655</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <img src="/lp/logos/logo-kelto-blanc.png" alt="Kelto, financement commercial et résidentiel" width="133" height="46">
+      <div class="contact">
+        <a href="tel:+15146606655">514 660-6655</a>
+        <a href="mailto:info@kelto.ca">info@kelto.ca</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Kelto, courtiers hypothécaires agréés au Québec. 1250, boul. René-Lévesque Ouest, bureau 2200, Montréal. <!-- À FAIRE : ajouter le nom du cabinet et le numéro de permis AMF --></p>
+      <p>Les montants affichés sont un exemple illustratif. Les taux et estimations sont fournis à titre indicatif seulement et demeurent sujets à l'approbation du prêteur. Le questionnaire ne constitue pas une demande de crédit.</p>
+      <p>Certaines images sont des mises en situation. <a href="https://kelto.ca">kelto.ca</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="#quiz" data-go-quiz>Calculer mon regroupement</a>
+  <a class="btn btn-ghost" href="tel:+15146606655" aria-label="Appeler Kelto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+</div>
+
+<script>
+/* ==========================================================================
+   Configuration du questionnaire, page CONSOLIDATION (propriétaires)
+   Le ratio calculé = (solde hypothécaire + dettes à regrouper) / valeur.
+   ========================================================================== */
+(function () {
+  var VAL = { v200: 160, v300: 250, v500: 400, v750: 625, v1m: 875, vplus: 1250 };
+  var SOL = { s100: 70, s250: 175, s400: 325, s600: 500, splus: 700 };
+  var DET = { d15: 10, d30: 22, d60: 45, d100: 80, dplus: 120 };
+  var CR  = { c550: 1, c600: 2, c650: 3, c700: 4, c700p: 5, inconnu: 3 };
+
+  window.KELTO = {
+    source: "kelto-consolidation",
+    tag: "Analyse de regroupement",
+    webhook: "https://services.leadconnectorhq.com/hooks/qXbVnGNwohzqucJ2GC88/webhook-trigger/96c3192a-5840-4b81-b164-c6cc1019b6fb",
+    calendar: "",
+    steps: [
+      { id: "proprio", q: "Êtes-vous propriétaire?", type: "choice", options: [
+        { v: "hypotheque", label: "Oui, avec une hypothèque", icon: "home" },
+        { v: "payee", label: "Oui, la maison est payée", icon: "check" },
+        { v: "locataire", label: "Non, je suis locataire", icon: "x",
+          stop: { title: "Ce programme s'adresse aux propriétaires",
+                  text: "Le regroupement de dettes sur une hypothèque s'appuie sur la valeur d'une propriété. Si vous devenez propriétaire, on sera là." } } ] },
+      { id: "dettes", q: "Quelles dettes voulez-vous regrouper?", help: "Cochez tout ce qui s'applique.", type: "multi", options: [
+        { v: "cartes", label: "Cartes de crédit", icon: "card" },
+        { v: "marge", label: "Marge de crédit", icon: "trend" },
+        { v: "auto", label: "Prêt auto", icon: "briefcase" },
+        { v: "perso", label: "Prêt personnel", icon: "user" },
+        { v: "impots", label: "Impôts en retard", icon: "alert" },
+        { v: "autre", label: "Autre", icon: "stack" } ] },
+      { id: "montant", q: "Combien, au total?", help: "Une approximation suffit.", type: "choice", cols: 2, options: [
+        { v: "d15", label: "Moins de 15 k$" }, { v: "d30", label: "15 à 30 k$" },
+        { v: "d60", label: "30 à 60 k$" }, { v: "d100", label: "60 à 100 k$" },
+        { v: "dplus", label: "Plus de 100 k$" } ] },
+      { id: "paiements", q: "Ces dettes vous coûtent combien par mois?", type: "choice", cols: 2, options: [
+        { v: "p500", label: "Moins de 500 $" }, { v: "p1000", label: "500 à 1 000 $" },
+        { v: "p2000", label: "1 000 à 2 000 $" }, { v: "p2000plus", label: "Plus de 2 000 $" } ] },
+      { id: "valeur", q: "Combien vaut votre maison, environ?", type: "choice", cols: 2, options: [
+        { v: "v200", label: "Moins de 200 k$" }, { v: "v300", label: "200 à 300 k$" },
+        { v: "v500", label: "300 à 500 k$" },
+        { v: "v750", label: "500 à 750 k$" }, { v: "v1m", label: "750 k$ à 1 M$" },
+        { v: "vplus", label: "Plus de 1 M$" } ] },
+      { id: "solde", skipIf: function (a) { return a.proprio === "payee"; }, q: "Et le solde de votre hypothèque?", type: "choice", cols: 2, options: [
+        { v: "s100", label: "Moins de 100 k$" }, { v: "s250", label: "100 à 250 k$" },
+        { v: "s400", label: "250 à 400 k$" }, { v: "s600", label: "400 à 600 k$" },
+        { v: "splus", label: "Plus de 600 k$" } ] },
+      { id: "credit", q: "Votre cote de crédit, à peu près?", help: "On ne vérifie rien sans votre accord.", type: "chips",
+        skip: "Je ne sais pas, ce n'est pas grave", options: [
+        { v: "c550", label: "&lt; 550", sub: "À rebâtir" },
+        { v: "c600", label: "550+", sub: "Fragile" },
+        { v: "c650", label: "600+", sub: "Moyenne" },
+        { v: "c700", label: "650+", sub: "Bonne" },
+        { v: "c700p", label: "700+", sub: "Très bonne" } ] },
+      { id: "contact", q: "À qui on envoie le calcul?", help: "Un courtier vous rappelle, sans engagement.", type: "contact", cta: "Recevoir mon calcul" }
+    ],
+    angles: {
+      unpaiement: { h1: "Vos dettes, regroupées en un seul paiement.",
+                    lead: "Propriétaire? Cartes, marge, prêt auto : on regroupe tout dans votre hypothèque, au taux d'une hypothèque." },
+      remplacer:  { h1: "Remplacez tous vos paiements de dettes par un seul.",
+                    lead: "Propriétaire? Un courtier Kelto regroupe vos cartes, votre marge et votre prêt auto dans votre hypothèque." },
+      taux:       { h1: "Payez vos cartes de crédit au taux d'une hypothèque.",
+                    lead: "Propriétaire? Regroupez vos dettes dans votre maison et gardez un seul paiement par mois." },
+      cartes: { h1: "Vos cartes de crédit, effacées par votre hypothèque.",
+                lead: "Propriétaire? Regroupez vos cartes dans l'hypothèque et payez le taux d'une hypothèque, pas celui d'une carte." },
+      auto:   { h1: "Votre prêt auto et vos cartes, en un seul paiement.",
+                lead: "Propriétaire? On regroupe tout dans votre hypothèque. Un seul paiement par mois." }
+    },
+    verdict: function (a) {
+      var v = VAL[a.valeur], s = a.proprio === "payee" ? 0 : (SOL[a.solde] || 0), d = DET[a.montant] || 0;
+      var ltv = v ? (s + d) / v : null, pct = ltv !== null ? Math.round(ltv * 100) : null;
+      var cr = CR[a.credit] || 3;
+      var ratio = pct !== null ? "Après le regroupement, votre hypothèque représenterait environ " + pct + " % de la valeur de votre maison. " : "";
+      var L = function (t) { return [
+        { label: "A · Banque ou caisse", on: t === "A" },
+        { label: "B · Prêteur alternatif", on: t === "B" },
+        { label: "Privé · Prêteur privé", on: t === "prive" } ]; };
+      if (ltv > 0.85) return { tier: "analyse", title: "On regarde votre dossier de près",
+        text: ratio + "C'est au-dessus des limites habituelles. Un courtier vérifie si un regroupement partiel est possible." };
+      if (ltv <= 0.8 && cr >= 4) return { tier: "A", ladder: L("A"), title: "Bonne nouvelle : tout rentre sous la limite de 80 %",
+        text: ratio + "Une banque ou une caisse pourrait regrouper vos dettes. Le courtier calcule votre nouveau paiement." };
+      if (ltv <= 0.8) return { tier: "B", ladder: L("B"), title: "Votre piste probable : un prêteur alternatif (B)",
+        text: ratio + "L'équité est là. Un prêteur B regarde votre maison plus que votre cote, puis on vise le retour en banque à l'échéance." };
+      return { tier: "prive", ladder: L("prive"), title: "Votre piste probable : un prêteur privé",
+        text: ratio + "Au-dessus de 80 %, un prêteur privé peut compléter le regroupement. Il coûte plus cher : on prépare la sortie dès le départ." };
+    }
+  };
+
+  // La carte Avant / Après s'anime quand elle entre à l'écran
+  var ba = document.getElementById("ba");
+  if (ba && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { ba.classList.add("go"); o.disconnect(); } }, { threshold: .5 }).observe(ba);
+  } else if (ba) { ba.classList.add("go"); }
+})();
+</script>
+<script src="/lp/assets/kelto-quiz.js?v=5"></script>
+<script src="/lp/assets/kelto-fx.js?v=1"></script>
+</body>
+</html>
