@@ -13,6 +13,9 @@
  *   <script>
  *     window.KELTO_META = {
  *       pixelId: "973439061907168",              // Kelto  (Prêt Boréal : utiliser l'ID de son propre jeu de données)
+ *       extraPixelIds: ["1472806754667454"],    // optionnel : autres pixels Kelto à alimenter en parallèle
+ *                                                //   (ex. le pixel historique sur lequel les campagnes en cours
+ *                                                //   optimisent encore). Même consentement, mêmes événements.
  *       privacyUrl: "/confidentialite.html",     // page de politique de confidentialité de CE site
  *       siteName: "Kelto"                        // nom affiché dans la bannière
  *     };
@@ -36,6 +39,12 @@
     if (w.console) console.warn('[kelto-meta] pixelId manquant ou invalide : rien n\'est chargé.');
     return;
   }
+  // Pixels supplémentaires (facultatifs) : reçoivent exactement les mêmes événements, sous le même consentement.
+  var ALL_IDS = [PIXEL_ID];
+  [].concat(CFG.extraPixelIds || []).forEach(function (id) {
+    id = String(id || '');
+    if (/^\d{10,20}$/.test(id) && ALL_IDS.indexOf(id) < 0) ALL_IDS.push(id);
+  });
   var PRIVACY_URL = CFG.privacyUrl || '/confidentialite.html';
   var SITE = CFG.siteName || 'ce site';
   // Banniere de consentement. false = pas de banniere, le pixel demarre tout de suite.
@@ -77,11 +86,13 @@
       }
     })(w, d, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     w.fbq('consent', 'grant');
-    // Désactive la détection automatique de boutons/formulaires (donnée financière sensible).
-    w.fbq('set', 'autoConfig', false, PIXEL_ID);
-    w.fbq('init', PIXEL_ID);
-    // trackSingle : n'envoie qu'à CE pixel, même si un autre pixel (ex. celui d'une agence) est présent sur la page.
-    w.fbq('trackSingle', PIXEL_ID, 'PageView');
+    ALL_IDS.forEach(function (id) {
+      // Désactive la détection automatique de boutons/formulaires (donnée financière sensible).
+      w.fbq('set', 'autoConfig', false, id);
+      w.fbq('init', id);
+    });
+    // trackSingle : n'envoie qu'aux pixels listés ici, même si un autre pixel (ex. celui d'une agence) est présent sur la page.
+    ALL_IDS.forEach(function (id) { w.fbq('trackSingle', id, 'PageView'); });
   }
 
   function expireMetaCookies() {
@@ -183,7 +194,8 @@
     track: function (name, params, eventId) {
       var id = eventId || w.keltoMeta.newEventId(String(name).toLowerCase());
       if (granted() && w.fbq) {
-        w.fbq('trackSingle', PIXEL_ID, name, params || {}, { eventID: id });
+        // Même identifiant sur chaque pixel : la déduplication se fait pixel par pixel.
+        ALL_IDS.forEach(function (pid) { w.fbq('trackSingle', pid, name, params || {}, { eventID: id }); });
       }
       return id;
     },
