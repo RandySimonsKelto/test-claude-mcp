@@ -423,6 +423,11 @@
   /* ---------- Pont vers Velocity: webhooks Zapier + message post-réservation ---------- */
   const BRIDGE_WEBHOOK_FORM_COMPLETE = "https://hooks.zapier.com/hooks/catch/7773571/4t4kzmg/";
   const BRIDGE_WEBHOOK_BOOKING_CONFIRMED = "https://hooks.zapier.com/hooks/catch/7773571/4t4fh2r/";
+  // Calendrier de Kelto dans GoHighLevel, partagé avec les pages de campagne.
+  const GHL_CALENDAR_ID = "UGlrZg3Bd1VmmlT0fSW7";
+  const GHL_BOOKING_BASE = "https://api.leadconnectorhq.com/widget/booking/";
+  const GHL_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
+  const GHL_ORIGINS = ["leadconnectorhq.com", "msgsndr.com"];
   function sendBridgeWebhook(url, data) {
     try {
       const params = new URLSearchParams(data);
@@ -448,6 +453,7 @@
   let wizardSequence = [];
   let wizardIndex = 0;
   let calInitialized = false;
+  let bookingHandled = false;
 
   // Étapes additionnelles par scénario (au-delà des 4 champs de base) — permet un nombre
   // d'étapes variable selon le scénario (ex. cote de crédit ajoutée partout, délai et
@@ -531,31 +537,6 @@
   function initCalEmbed() {
     if (calInitialized || !scenarioForm) return;
     calInitialized = true;
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal; let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {}; cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-
     const formData = new FormData(scenarioForm);
     const nom = formData.get("nom") || "";
     const courriel = formData.get("courriel") || "";
@@ -599,22 +580,56 @@
     // on avertit Zapier/GoHighLevel pour déclencher le courriel d'invitation.
     sendBridgeWebhook(BRIDGE_WEBHOOK_FORM_COMPLETE, bridgeLeadData);
 
-    window.Cal("init", "kelto-hypotheques", { origin: "https://app.cal.com" });
-    window.Cal.ns["kelto-hypotheques"]("inline", {
-      elementOrSelector: "#calEmbed",
-      config: { layout: "month_view", name: nom, email: courriel, notes: noteParts.join(" | ") },
-      calLink: "kelto-hypotheques/15min",
-    });
-    window.Cal.ns["kelto-hypotheques"]("ui", { styles: { branding: { brandColor: "#134e86" } }, hideEventTypeDetails: false, layout: "month_view" });
-    window.Cal.ns["kelto-hypotheques"]("on", {
-      action: "bookingSuccessful",
-      callback: () => {
-        // Le rendez-vous vient d'être confirmé — on avertit Zapier/GoHighLevel pour
-        // déclencher le second courriel, et on affiche le message de conversion sur place.
-        if (window.keltoMeta) metaEventIds.meta_schedule_event_id = window.keltoMeta.track("Schedule");
-        sendBridgeWebhook(BRIDGE_WEBHOOK_BOOKING_CONFIRMED, Object.assign({}, bridgeLeadData, metaFields("meta_schedule_event_id")));
-        showPostBookingMessage();
-      },
+    // Calendrier de Kelto dans GoHighLevel — le même que celui des pages de campagne
+    // (/renouvellement, /consolidation, /refus-bancaire, /merci), pour n'avoir qu'un seul
+    // calendrier et une seule source de rendez-vous.
+    // Le widget pré-remplit first_name / last_name / email / phone par l'URL ; il n'accepte
+    // pas de note, mais les réponses du questionnaire partent déjà au CRM par le webhook
+    // BRIDGE_WEBHOOK_FORM_COMPLETE ci-dessus.
+    const nomMots = String(nom).trim().split(/\s+/).filter(Boolean);
+    const prenom = nomMots.shift() || "";
+    const nomFamille = nomMots.join(" ");
+    const calParams = new URLSearchParams({ lang: "fr" });
+    if (prenom) calParams.set("first_name", prenom);
+    if (nomFamille) calParams.set("last_name", nomFamille);
+    if (courriel) calParams.set("email", courriel);
+    if (telephone) calParams.set("phone", telephone);
+
+    const calHost = $("#calEmbed");
+    if (calHost) {
+      const frame = document.createElement("iframe");
+      frame.src = GHL_BOOKING_BASE + GHL_CALENDAR_ID + "?" + calParams.toString();
+      frame.id = GHL_CALENDAR_ID + "_site";
+      frame.title = "Calendrier de réservation de Kelto";
+      frame.setAttribute("scrolling", "no");
+      frame.loading = "lazy";
+      calHost.textContent = "";
+      calHost.appendChild(frame);
+    }
+    // Script officiel de GoHighLevel : ajuste la hauteur de l'iframe et relaie ses événements.
+    if (!document.querySelector('script[src="' + GHL_EMBED_SCRIPT + '"]')) {
+      const gs = document.createElement("script");
+      gs.src = GHL_EMBED_SCRIPT;
+      gs.async = true;
+      document.body.appendChild(gs);
+    }
+
+    // Rendez-vous confirmé : GoHighLevel prévient la page parente par postMessage.
+    // On n'utilise aucune donnée du message, seulement son nom, puis on réutilise les
+    // informations déjà collectées sur la page.
+    window.addEventListener("message", function (ev) {
+      let origine = "";
+      try { origine = new URL(ev.origin).hostname; } catch (e) { return; }
+      if (!GHL_ORIGINS.some((h) => origine === h || origine.endsWith("." + h))) return;
+      const charge = ev.data;
+      const nomEvt = Array.isArray(charge) ? charge[0] : charge && charge.type;
+      if (nomEvt !== "msgsndr-booking-complete" || bookingHandled) return;
+      bookingHandled = true;
+      // On avertit Zapier/GoHighLevel pour déclencher le second courriel, et on affiche
+      // le message de conversion sur place.
+      if (window.keltoMeta) metaEventIds.meta_schedule_event_id = window.keltoMeta.track("Schedule");
+      sendBridgeWebhook(BRIDGE_WEBHOOK_BOOKING_CONFIRMED, Object.assign({}, bridgeLeadData, metaFields("meta_schedule_event_id")));
+      showPostBookingMessage();
     });
   }
   function showWizardStep(key) {
