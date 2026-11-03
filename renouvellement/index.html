@@ -22,6 +22,12 @@
 <script src="/kelto-meta-pixel.js" defer></script>
 
 <style>
+/* ---------- Vidéo du courtier dans le hero : avant le questionnaire sur mobile, colonne gauche sur grand écran ---------- */
+.hero-video{order:2}.hero .hero-quiz{order:3}
+.media-video{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.media-video video{width:min(100%,360px);aspect-ratio:9/16;height:auto;border-radius:var(--r-card,18px);background:#0B2C4F;box-shadow:var(--shadow-lg,0 20px 50px rgba(11,44,79,.25));display:block}
+.video-legende{font-size:14px;color:var(--muted,#5b6b7d);text-align:center}
+@media(min-width:960px){.media-video{align-items:flex-start}.media-video video{width:300px}}
 /* ---------- Propre à cette page : la lettre de renouvellement annotée ---------- */
 .letter-grid{display:grid;gap:40px;align-items:center}
 @media(min-width:960px){.letter-grid{grid-template-columns:1fr 1fr;gap:72px}}
@@ -95,14 +101,19 @@
         </ul>
       </div>
 
-      <div class="hero-media">
-        <figure class="media">
-          <img src="/lp/photos/re-hero.jpg" alt="Un couple relit la lettre de renouvellement de sa banque à la table de cuisine" width="1536" height="1024" fetchpriority="high">
-          <figcaption class="float-chip">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></span>
-            <span><b>Jusqu'à 120 jours d'avance</b><span>C'est souvent le délai pour réserver un taux ailleurs.</span></span>
-          </figcaption>
+      <div class="hero-media hero-video">
+        <!-- Vidéo du courtier (34 s) : sur mobile, elle passe AVANT le questionnaire (voir le style de la page) -->
+        <figure class="media media-video">
+          <video id="video-courtier" controls playsinline preload="metadata" poster="/lp/videos/jeff-renouvellement.jpg" width="720" height="1280"
+            aria-label="Un courtier Kelto explique pourquoi ne pas signer son renouvellement sans comparer">
+            <source src="/lp/videos/jeff-renouvellement.mp4" type="video/mp4">
+          </video>
+          <figcaption class="video-legende">Un courtier Kelto vous explique, en 30 secondes.</figcaption>
         </figure>
+        <script>
+          // Événement pixel « VSLPlay » au premier clic sur lecture (via le chargeur du site, même consentement)
+          (function(){var v=document.getElementById("video-courtier"),ok=false;if(!v)return;v.addEventListener("play",function(){if(ok)return;ok=true;try{window.keltoMeta&&keltoMeta.track("VSLPlay")}catch(e){}});})();
+        </script>
       </div>
     </div>
 
